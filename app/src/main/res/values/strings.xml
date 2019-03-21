@@ -6,4 +6,7 @@
     <string name="nav_header_subtitle">schelasvans@schelas.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_about">Sobre</string>
+
+    <string name="loginFail">Login falhou!</string>
+    <string name="tryAgain">Tente novamente</string>
 </resources>

@@ -15,13 +15,13 @@ import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.controller.CadastroPassageiro;
 import com.schelas.schelasvans.controller.Login;
 
-public class MainActivity extends AppCompatActivity
+public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.dashboard);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
