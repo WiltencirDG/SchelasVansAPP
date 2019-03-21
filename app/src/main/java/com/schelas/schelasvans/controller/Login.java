@@ -19,6 +19,9 @@ import com.schelas.schelasvans.model.LoginRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Login extends AppCompatActivity {
 
     private EditText etEmail;
@@ -100,8 +103,12 @@ public class Login extends AppCompatActivity {
         etPass.setError(null);
 
         if(username.isEmpty()){
-            etEmail.setError("Digite seu email");
+            etEmail.setError("Digite seu e-mail!");
             return false;
+        }else{
+            if(!validateEmail(username)){
+                etEmail.setError("O e-mail digitado não é válido.");
+            }
         }
         if (password.isEmpty()) {
             etPass.setError("Digite sua senha");
@@ -110,6 +117,20 @@ public class Login extends AppCompatActivity {
             return true;
         }
     }
+
+    private boolean validateEmail(String email){
+        etEmail.setError(null);
+
+        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
+        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = pattern.matcher(email);
+        if (matcher.matches()) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
     private void setUI(){
         btLogin = (Button) findViewById(R.id.btLogin);
         etEmail = (EditText) findViewById(R.id.etEmail);
