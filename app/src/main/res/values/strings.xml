@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">SchelasVans</string>
+    <string name="navigation_drawer_open">Abrir drawer</string>
+    <string name="navigation_drawer_close">Fechar drawer</string>
+    <string name="nav_header_title">SchelasVans</string>
+    <string name="nav_header_subtitle">schelasvans@schelas.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_about">Sobre</string>
+</resources>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_perfil"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="Perfil" />
+        <item
+            android:id="@+id/nav_rotas"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Rotas" />
+        <item
+            android:id="@+id/nav_relatorios"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Relatórios" />
+
+    </group>
+
+    <item android:title="Cadastros">
+        <menu>
+            <item
+                android:id="@+id/nav_passageiros"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Passageiros" />
+            <item
+                android:id="@+id/nav_veiculos"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Veiculos" />
+            <item
+                android:id="@+id/nav_dest"
+                android:icon="@drawable/ic_menu_send"
+                android:title="Destinos" />
+        </menu>
+    </item>
+
+    <item android:title="">
+        <menu>
+            <item
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Logout" />
+        </menu>
+    </item>
+
+</menu>
