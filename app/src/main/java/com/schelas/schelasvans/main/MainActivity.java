@@ -13,6 +13,7 @@ import android.view.MenuItem;
 
 import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.controller.CadastroPassageiro;
+import com.schelas.schelasvans.controller.Login;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -73,7 +74,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_perfil) {
-
+            Intent intent = new Intent(this, Login.class);
+            startActivity(intent);
         } else if (id == R.id.nav_rotas) {
 
         } else if (id == R.id.nav_relatorios) {

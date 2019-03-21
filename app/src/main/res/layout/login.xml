@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/colorPrimaryDark"
+    tools:context=".controller.Login">
+
+
+    <ImageView
+        android:layout_width="170dp"
+        android:layout_height="0dp"
+        android:src="@drawable/ic_menu_share"
+        android:layout_weight="8"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp">
+
+        <EditText
+            android:id="@+id/etEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email"
+            android:layout_marginBottom="4dp"
+            android:singleLine="true"
+            android:textColorHint="@color/colorAccent"
+            android:textSize="16sp"
+            android:paddingLeft="10dp"/>
+
+        <EditText
+            android:id="@+id/etPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:hint="Senha"
+            android:layout_marginTop="10dp"
+            android:singleLine="true"
+            android:textColorHint="@color/colorAccent"
+            android:textSize="16sp"
+            android:paddingLeft="10dp"
+            />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp">
+
+        <Button
+            android:id="@+id/btLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_gravity="center"
+            android:text="Login"
+            android:textSize="14sp"
+            android:background="@color/colorAccent"
+            android:textColor="@color/colorPrimaryDark"
+            />
+
+        <TextView
+            android:id="@+id/tvRegister"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Registre-se"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            />
+
+    </LinearLayout>
+
+</LinearLayout>
