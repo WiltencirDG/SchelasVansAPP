@@ -9,4 +9,21 @@
 
     <string name="loginFail">Login falhou!</string>
     <string name="tryAgain">Tente novamente</string>
+    <string name="rUser">Usuário</string>
+    <string name="rPass">Senha</string>
+    <string name="rPassConf">Confirme a senha</string>
+    <string name="errorEmail">Email</string>
+    <string name="rBtnRegistro" >Registre-se</string>
+    <string name="rAlreadyHave" >Já tem conta?</string>
+    <string name="rLogin" >Login</string>
+    <string name="RegFail" >Houve falha no registro.</string>
+    <string name="TryAgain" >Tente novamente</string>
+    <string name="actCadPass" >Cadastro de Passageiro</string>
+    <string name="actRegister" >Registro de Usuário</string>
+    <string name="errorGeneral" >Há campos inválidos. Verifique e tente novamente.</string>
+    <string name="rEmail" >Email</string>
+    <string name="lbEmail">Digite seu email</string>
+    <string name="lbUser">Nome de usuário</string>
+    <string name="lbPass">Senha</string>
+    <string name="lbConfPass">Confirme a senha</string>
 </resources>

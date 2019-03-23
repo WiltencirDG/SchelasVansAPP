@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="com.schelas.schelasvans.controller.Registration">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp">
+
+        <TextView
+            android:id="@+id/tvErrors"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:textColor="@color/colorPrimaryText"
+            android:visibility="invisible"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"/>
+
+
+        <TextView
+            android:id="@+id/lbEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbEmail"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_marginTop="20dp"
+            android:labelFor="@id/rEmail"
+            android:elevation="2dp"/>
+
+        <EditText
+            android:id="@+id/rEmail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:singleLine="true"
+            android:textColorHint="@color/colorSecondaryText"
+            android:layout_marginBottom="10dp"
+            android:textSize="16sp"
+            />
+
+        <TextView
+            android:id="@+id/lbUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbUser"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_marginTop="20dp"
+            android:labelFor="@id/rUser"
+            android:elevation="2dp"/>
+
+        <EditText
+            android:id="@+id/rUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:singleLine="true"
+            android:textColorHint="@color/colorSecondaryText"
+            android:layout_marginBottom="10dp"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/lbPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbPass"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_marginTop="20dp"
+            android:labelFor="@id/rUser"
+            android:elevation="2dp"/>
+
+        <EditText
+            android:id="@+id/rPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColorHint="@color/colorSecondaryText"
+            android:layout_marginBottom="10dp"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/lbConfPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/lbConfPass"
+            android:textColor="@color/colorPrimaryText"
+            android:layout_marginTop="20dp"
+            android:labelFor="@id/rUser"
+            android:elevation="2dp"/>
+
+        <EditText
+            android:id="@+id/rConfPass"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:singleLine="true"
+            android:textColorHint="@color/colorSecondaryText"
+            android:layout_marginBottom="10dp"
+            android:textSize="16sp"/>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="15dp">
+
+            <Button
+                android:id="@+id/rRegBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rBtnRegistro"
+                android:textColor="@color/colorTextWhite"
+                android:textSize="14sp"
+                android:layout_above="@+id/rtvRegistrado"
+                android:background="@color/colorAccent"/>
+
+            <TextView
+                android:id="@+id/rtvRegistrado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/rAlreadyHave"
+                android:layout_above="@+id/rLoginBtn"
+                android:textColor="@color/colorPrimaryText"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"/>
+
+            <Button
+                android:id="@+id/rLoginBtn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/rLogin"
+                android:textColor="@color/colorTextWhite"
+                android:background="@color/colorAccent"
+                android:textSize="14sp"
+                android:layout_alignParentBottom="true"/>
+
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+</LinearLayout>
