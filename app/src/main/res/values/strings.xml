@@ -26,4 +26,6 @@
     <string name="lbUser">Nome de usuário</string>
     <string name="lbPass">Senha</string>
     <string name="lbConfPass">Confirme a senha</string>
+    <string name="lRegister">Registre-se</string>
+    <string name="lLogin">Login</string>
 </resources>
