@@ -2,6 +2,7 @@ package com.schelas.schelasvans.controller;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -54,11 +55,16 @@ public class CadastroPassageiro extends AppCompatActivity {
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
         rvPassageiros.setLayoutManager(mLayoutManager);
 
-        PassageirosAdapter mAdapter = new PassageirosAdapter(passageiros);
+        final Adapter mAdapter = new Adapter(passageiros);
         mAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                (passageiros.get(rvPassageiros.getChildLayoutPosition(view)));
+                AlertDialog.Builder builder = new AlertDialog.Builder(CadastroPassageiro.this);
+                                    builder.setMessage(passageiros.get(rvPassageiros.getChildLayoutPosition(view)).getIdPass())
+                                            .setNegativeButton(passageiros.get(rvPassageiros.getChildLayoutPosition(view)).getName(), null)
+                                            .create()
+                                            .show();
             }
         });
 
@@ -92,21 +98,9 @@ public class CadastroPassageiro extends AppCompatActivity {
             }
         });
 
+        //TODO: Só responde na segunda vez.
         RequestQueue requestQueue= Volley.newRequestQueue(CadastroPassageiro.this);
         requestQueue.add(stringRequest);
-
-
-        Passageiros pass = new Passageiros("WIltera", "1", 1);
-        passes.add(pass);
-
-        pass = new Passageiros("André", "2", 1);
-        passes.add(pass);
-
-        pass = new Passageiros("Bruno", "3", 1);
-        passes.add(pass);
-
-        pass = new Passageiros("Paulo", "4", 1);
-        passes.add(pass);
 
         return passes;
     }
