@@ -47,4 +47,18 @@ public class Validator {
         }
     }
 
+
+    boolean validateLogin(String username, String password){
+
+        if(username.isEmpty()){
+            return false;
+        }
+        if(password.isEmpty()){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
 }

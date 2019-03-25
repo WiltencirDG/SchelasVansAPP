@@ -28,4 +28,6 @@
     <string name="lbConfPass">Confirme a senha</string>
     <string name="lRegister">Registre-se</string>
     <string name="lLogin">Login</string>
+    <string name="loginFailInval">Dados inválidos.</string>
+    <string name="back_button">Back button</string>
 </resources>

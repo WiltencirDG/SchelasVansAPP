@@ -19,9 +19,6 @@ import com.schelas.schelasvans.model.LoginRequest;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 public class Login extends AppCompatActivity {
 
     private EditText etEmail;
@@ -38,51 +35,64 @@ public class Login extends AppCompatActivity {
     }
 
     private void Act(){
+        final Validator validator = new Validator();
+
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 final String username = etEmail.getText().toString();
                 final String password = etPass.getText().toString();
 
-                if (validateData(username, password)) {
+                if (validator.validateLogin(username, password)) {
 
-                    Response.Listener<String> responseListener = new Response.Listener<String>() {
+//                    Response.Listener<String> responseListener = new Response.Listener<String>() {
+//
+//                        @Override
+//                        public void onResponse(String response) {
+//
+//                            try {
+//                                JSONObject jsonResponse = new JSONObject(response);
+//                                boolean success = jsonResponse.getBoolean("success");
+//
+//                                if (success) {
+//                                    String username = jsonResponse.getString("username");
+//
+//                                    Intent intent = new Intent(Login.this, Dashboard.class);
+//                                    intent.putExtra("username", username);
+//                                    Login.this.startActivity(intent);
+//
+//
+//                                } else {
+//                                    AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+//                                    builder.setMessage(R.string.loginFail)
+//                                            .setNegativeButton(R.string.tryAgain, null)
+//                                            .create()
+//                                            .show();
+//                                }
+//
+//
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//
+//
+//                        }
+//                    };
+//
+//                    LoginRequest loginRequest = new LoginRequest(username, password, responseListener);
+//                    RequestQueue queue = Volley.newRequestQueue(Login.this);
+//                    queue.add(loginRequest);
 
-                        @Override
-                        public void onResponse(String response) {
+                    Intent intent = new Intent(Login.this, Dashboard.class);
+                    intent.putExtra("username", username);
+                    Login.this.startActivity(intent);
 
-                            try {
-                                JSONObject jsonResponse = new JSONObject(response);
-                                boolean success = jsonResponse.getBoolean("success");
-
-                                if (success) {
-                                    String username = jsonResponse.getString("username");
-
-                                    Intent intent = new Intent(Login.this, Dashboard.class);
-                                    intent.putExtra("username", username);
-                                    Login.this.startActivity(intent);
-
-
-                                } else {
-                                    AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
-                                    builder.setMessage(R.string.loginFail)
-                                            .setNegativeButton(R.string.tryAgain, null)
-                                            .create()
-                                            .show();
-                                }
-
-
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-
-
-                        }
-                    };
-
-                    LoginRequest loginRequest = new LoginRequest(username, password, responseListener);
-                    RequestQueue queue = Volley.newRequestQueue(Login.this);
-                    queue.add(loginRequest);
+                }else{
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+                    builder.setMessage(R.string.loginFailInval)
+                            .setNegativeButton(R.string.tryAgain, null)
+                            .create()
+                            .show();
                 }
             }
         });
@@ -96,39 +106,6 @@ public class Login extends AppCompatActivity {
 
         });
 
-    }
-
-    private boolean validateData(String username,String password){
-        etEmail.setError(null);
-        etPass.setError(null);
-
-        if(username.isEmpty()){
-            etEmail.setError("Digite seu e-mail!");
-            return false;
-        }else{
-            if(!validateEmail(username)){
-                etEmail.setError("O e-mail digitado não é válido.");
-            }
-        }
-        if (password.isEmpty()) {
-            etPass.setError("Digite sua senha");
-            return false;
-        }else{
-            return true;
-        }
-    }
-
-    private boolean validateEmail(String email){
-        etEmail.setError(null);
-
-        String expression = "^[\\w\\.-]+@([\\w\\-]+\\.)+[A-Z]{2,4}$";
-        Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = pattern.matcher(email);
-        if (matcher.matches()) {
-            return true;
-        }else{
-            return false;
-        }
     }
 
     private void setUI(){
