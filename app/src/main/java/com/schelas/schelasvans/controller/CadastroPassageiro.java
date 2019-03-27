@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CadastroPassageiro extends AppCompatActivity {
-    private static final String URL_FETCH = "https://demo2749685.mockable.io/passageiros";
+    private static final String URL_FETCH = "https://schelasvansapi.000webhostapp.com/api/get/Passageiros.php";
     private RecyclerView rvPassageiros;
     private ImageView ivToolbar;
     private Toolbar toolbar;
@@ -80,7 +80,7 @@ public class CadastroPassageiro extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    JSONArray array = jsonObject.getJSONArray("data");
+                    JSONArray array = jsonObject.getJSONArray();
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject ob = array.getJSONObject(i);
                         Passageiros pass = new Passageiros(ob.getString("nomePass"), ob.getString("idPass"), 1);
