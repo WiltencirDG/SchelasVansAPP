@@ -58,7 +58,7 @@ public class Login extends AppCompatActivity {
 
                                 } else {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
-                                    builder.setMessage(R.string.loginFail)
+                                    builder.setMessage(response) //R.string.loginFail
                                             .setNegativeButton(R.string.tryAgain, null)
                                             .create()
                                             .show();

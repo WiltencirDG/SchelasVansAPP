@@ -79,7 +79,7 @@ public class CadastroPassageiro extends AppCompatActivity {
             public void onResponse(String response) {
                 try {
                     JSONObject jsonObject = new JSONObject(response);
-                    JSONArray array = jsonObject.getJSONArray();
+                    JSONArray array = jsonObject.getJSONArray(response);
                     for (int i = 0; i < array.length(); i++) {
                         JSONObject ob = array.getJSONObject(i);
                         Passageiros pass = new Passageiros(ob.getString("nomePass"), ob.getString("idPass"), 1);
