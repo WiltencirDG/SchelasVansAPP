@@ -7,7 +7,7 @@ import java.util.Map;
 
 
 public class RegisterRequest extends StringRequest{
-    private static final String REGISTER_REQUEST_URL = "http://ratetattoo.comxa.com/Register.php";
+    private static final String REGISTER_REQUEST_URL = "https://schelasvansapi.000webhostapp.com/api/post/Register.php";
     private Map<String, String> params;
 
     public RegisterRequest(String username, String email, String password, Response.Listener<String> listener){

@@ -14,139 +14,137 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp">
 
-
-        <TextView
-            android:id="@+id/tvErrors"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text=""
-            android:textColor="@color/colorErrorText"
-            android:visibility="invisible"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"/>
-
-
-        <TextView
-            android:id="@+id/lbEmail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lbEmail"
-            android:textColor="@color/colorPrimaryText"
-            android:layout_marginTop="20dp"
-            android:labelFor="@id/rEmail"
-            android:elevation="2dp"/>
-
-        <EditText
-            android:id="@+id/rEmail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textEmailAddress"
-            android:singleLine="true"
-            android:textColorHint="@color/colorSecondaryText"
-            android:layout_marginBottom="10dp"
-            android:textSize="16sp"
-            />
-
-        <TextView
-            android:id="@+id/lbUser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lbUser"
-            android:textColor="@color/colorPrimaryText"
-            android:layout_marginTop="20dp"
-            android:labelFor="@id/rUser"
-            android:elevation="2dp"/>
-
-        <EditText
-            android:id="@+id/rUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:singleLine="true"
-            android:textColorHint="@color/colorSecondaryText"
-            android:layout_marginBottom="10dp"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/lbPass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lbPass"
-            android:textColor="@color/colorPrimaryText"
-            android:layout_marginTop="20dp"
-            android:labelFor="@id/rUser"
-            android:elevation="2dp"/>
-
-        <EditText
-            android:id="@+id/rPass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:singleLine="true"
-            android:textColorHint="@color/colorSecondaryText"
-            android:layout_marginBottom="10dp"
-            android:textSize="16sp"/>
-
-        <TextView
-            android:id="@+id/lbConfPass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/lbConfPass"
-            android:textColor="@color/colorPrimaryText"
-            android:layout_marginTop="20dp"
-            android:labelFor="@id/rUser"
-            android:elevation="2dp"/>
-
-        <EditText
-            android:id="@+id/rConfPass"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="textPassword"
-            android:singleLine="true"
-            android:textColorHint="@color/colorSecondaryText"
-            android:layout_marginBottom="10dp"
-            android:textSize="16sp"/>
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp">
-
-            <Button
-                android:id="@+id/rRegBtn"
+            <TextView
+                android:id="@+id/tvErrors"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/rBtnRegistro"
-                android:textColor="@color/colorPrimaryText"
-                android:textSize="14sp"
-                android:layout_above="@+id/rtvRegistrado"
-                android:background="@color/colorAccent"/>
+                android:textAlignment="center"
+                android:text=""
+                android:textColor="@color/colorErrorText"
+                android:visibility="invisible"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"/>
+
 
             <TextView
-                android:id="@+id/rtvRegistrado"
+                android:id="@+id/lbEmail"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/rAlreadyHave"
-                android:layout_above="@+id/rLoginBtn"
+                android:text="@string/lbEmail"
                 android:textColor="@color/colorPrimaryText"
-                android:layout_centerHorizontal="true"
                 android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"/>
+                android:labelFor="@id/rEmail"
+                android:elevation="2dp"/>
 
-            <Button
-                android:id="@+id/rLoginBtn"
+            <EditText
+                android:id="@+id/rEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/rLogin"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:textColorHint="@color/colorSecondaryText"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/lbUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbUser"
                 android:textColor="@color/colorPrimaryText"
-                android:background="@color/colorAccent"
-                android:textSize="14sp"
-                android:layout_alignParentBottom="true"/>
+                android:layout_marginTop="20dp"
+                android:labelFor="@id/rUser"
+                android:elevation="2dp"/>
+
+            <EditText
+                android:id="@+id/rUser"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textColorHint="@color/colorSecondaryText"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/lbPass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbPass"
+                android:textColor="@color/colorPrimaryText"
+                android:layout_marginTop="20dp"
+                android:labelFor="@id/rUser"
+                android:elevation="2dp"/>
+
+            <EditText
+                android:id="@+id/rPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColorHint="@color/colorSecondaryText"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/lbConfPass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbConfPass"
+                android:textColor="@color/colorPrimaryText"
+                android:layout_marginTop="20dp"
+                android:labelFor="@id/rUser"
+                android:elevation="2dp"/>
+
+            <EditText
+                android:id="@+id/rConfPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword"
+                android:singleLine="true"
+                android:textColorHint="@color/colorSecondaryText"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="15dp">
+
+                <Button
+                    android:id="@+id/rRegBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rBtnRegistro"
+                    android:textColor="@color/colorPrimaryText"
+                    android:textSize="14sp"
+                    android:layout_above="@+id/rtvRegistrado"
+                    android:background="@color/colorAccent"/>
+
+                <TextView
+                    android:id="@+id/rtvRegistrado"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rAlreadyHave"
+                    android:layout_above="@+id/rLoginBtn"
+                    android:textColor="@color/colorPrimaryText"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"/>
+
+                <Button
+                    android:id="@+id/rLoginBtn"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/rLogin"
+                    android:textColor="@color/colorPrimaryText"
+                    android:background="@color/colorAccent"
+                    android:textSize="14sp"
+                    android:layout_alignParentBottom="true"/>
 
 
-        </RelativeLayout>
-
+            </RelativeLayout>
     </LinearLayout>
 
 

@@ -30,4 +30,6 @@
     <string name="lLogin">Login</string>
     <string name="loginFailInval">Dados inválidos.</string>
     <string name="back_button">Back button</string>
+    <string name="regFail">Registro falhou!</string>
+    <string name="apiOffline">Serviço indisponível no momento.</string>
 </resources>

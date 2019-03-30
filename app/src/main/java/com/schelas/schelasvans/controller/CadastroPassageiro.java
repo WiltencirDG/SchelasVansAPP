@@ -59,7 +59,6 @@ public class CadastroPassageiro extends AppCompatActivity {
         mAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                (passageiros.get(rvPassageiros.getChildLayoutPosition(view)));
                 AlertDialog.Builder builder = new AlertDialog.Builder(CadastroPassageiro.this);
                                     builder.setMessage(passageiros.get(rvPassageiros.getChildLayoutPosition(view)).getIdPass())
                                             .setNegativeButton(passageiros.get(rvPassageiros.getChildLayoutPosition(view)).getName(), null)

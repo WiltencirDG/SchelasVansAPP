@@ -14,10 +14,8 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.main.Dashboard;
+import com.schelas.schelasvans.model.APIRequest;
 import com.schelas.schelasvans.model.LoginRequest;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class Login extends AppCompatActivity {
 
@@ -32,6 +30,7 @@ public class Login extends AppCompatActivity {
         setContentView(R.layout.login);
         setUI();
         Act();
+        checkAPI();
     }
 
     private void Act(){
@@ -45,47 +44,38 @@ public class Login extends AppCompatActivity {
 
                 if (validator.validateLogin(username, password)) {
 
-//                    Response.Listener<String> responseListener = new Response.Listener<String>() {
-//
-//                        @Override
-//                        public void onResponse(String response) {
-//
-//                            try {
-//                                JSONObject jsonResponse = new JSONObject(response);
-//                                boolean success = jsonResponse.getBoolean("success");
-//
-//                                if (success) {
-//                                    String username = jsonResponse.getString("username");
-//
-//                                    Intent intent = new Intent(Login.this, Dashboard.class);
-//                                    intent.putExtra("username", username);
-//                                    Login.this.startActivity(intent);
-//
-//
-//                                } else {
-//                                    AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
-//                                    builder.setMessage(R.string.loginFail)
-//                                            .setNegativeButton(R.string.tryAgain, null)
-//                                            .create()
-//                                            .show();
-//                                }
-//
-//
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//
-//
-//                        }
-//                    };
-//
-//                    LoginRequest loginRequest = new LoginRequest(username, password, responseListener);
-//                    RequestQueue queue = Volley.newRequestQueue(Login.this);
-//                    queue.add(loginRequest);
+                    Response.Listener<String> responseListener = new Response.Listener<String>() {
 
-                    Intent intent = new Intent(Login.this, Dashboard.class);
-                    intent.putExtra("username", username);
-                    Login.this.startActivity(intent);
+                        @Override
+                        public void onResponse(String response) {
+
+                            try {
+
+                                if (response.equals("true")) {
+
+                                    Intent intent = new Intent(Login.this, Dashboard.class);
+                                    Login.this.startActivity(intent);
+
+                                } else {
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+                                    builder.setMessage(R.string.loginFail)
+                                            .setNegativeButton(R.string.tryAgain, null)
+                                            .create()
+                                            .show();
+                                }
+
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+
+
+                        }
+                    };
+
+                    LoginRequest loginRequest = new LoginRequest(username, password, responseListener);
+                    RequestQueue queue = Volley.newRequestQueue(Login.this);
+                    queue.add(loginRequest);
 
                 }else{
                     AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
@@ -113,6 +103,33 @@ public class Login extends AppCompatActivity {
         etEmail = (EditText) findViewById(R.id.etEmail);
         etPass = (EditText) findViewById(R.id.etPass);
         tvRegister = (TextView) findViewById(R.id.tvRegister);
+    }
+
+    private void checkAPI(){
+        Response.Listener<String> responseListener = new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+
+                try {
+                    if (!response.equals("true")) {
+                        AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
+                        builder.setMessage(R.string.apiOffline)
+                                .setNegativeButton(R.string.tryAgain, null)
+                                .create()
+                                .show();
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+            }
+        };
+
+        APIRequest apiRequest = new APIRequest(responseListener);
+        RequestQueue queue = Volley.newRequestQueue(Login.this);
+        queue.add(apiRequest);
     }
 
 }

@@ -1,8 +1,8 @@
 package com.schelas.schelasvans.controller;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
@@ -13,6 +13,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.main.Dashboard;
 import com.schelas.schelasvans.model.RegisterRequest;
 
 import org.json.JSONException;
@@ -67,21 +68,22 @@ public class Registration extends AppCompatActivity {
                                 @Override
                                 public void onResponse(String response) {
                                     try {
-                                        JSONObject jsonResponse = new JSONObject(response);
-                                        boolean success = jsonResponse.getBoolean("success");
 
-                                        if (success) {
+                                        if (response.equals("true")) {
+
                                             Intent intent = new Intent(Registration.this, Login.class);
-                                            startActivity(intent);
+                                            Registration.this.startActivity(intent);
 
                                         } else {
-                                            AlertDialog.Builder builder = new AlertDialog.Builder(Registration.this);
-                                            builder.setMessage(R.string.RegFail)
-                                                    .setNegativeButton(R.string.TryAgain, null)
+                                            android.support.v7.app.AlertDialog.Builder builder = new AlertDialog.Builder(Registration.this);
+                                            builder.setMessage(R.string.regFail)
+                                                    .setNegativeButton(R.string.tryAgain, null)
                                                     .create()
                                                     .show();
                                         }
-                                    } catch (JSONException e) {
+
+
+                                    } catch (Exception e) {
                                         e.printStackTrace();
                                     }
                                 }

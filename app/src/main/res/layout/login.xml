@@ -11,7 +11,7 @@
     <ImageView
         android:layout_width="170dp"
         android:layout_height="0dp"
-        android:src="@drawable/ic_menu_share"
+        android:src="@drawable/ic_icon"
         android:layout_weight="8"
         android:layout_gravity="center"/>
 
