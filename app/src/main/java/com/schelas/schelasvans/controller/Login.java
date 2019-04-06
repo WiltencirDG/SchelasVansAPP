@@ -46,19 +46,19 @@ public class Login extends AppCompatActivity {
 
                     Response.Listener<String> responseListener = new Response.Listener<String>() {
 
-                        @Override
-                        public void onResponse(String response) {
+                                    @Override
+                                    public void onResponse(String response) {
 
-                            try {
+                                        try {
 
-                                if (response.equals("true")) {
+                                if (response.contains("true")) {
 
                                     Intent intent = new Intent(Login.this, Dashboard.class);
                                     Login.this.startActivity(intent);
 
                                 } else {
                                     AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
-                                    builder.setMessage(response) //R.string.loginFail
+                                    builder.setMessage(R.string.loginFail)
                                             .setNegativeButton(R.string.tryAgain, null)
                                             .create()
                                             .show();

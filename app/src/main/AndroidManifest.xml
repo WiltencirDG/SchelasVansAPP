@@ -23,14 +23,6 @@
         </activity>
 
         <activity
-            android:name=".controller.CadastroPassageiro"
-            android:label="@string/actCadPass"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:parentActivityName=".main.Dashboard">
-
-        </activity>
-
-        <activity
             android:name=".controller.Login"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
@@ -47,6 +39,22 @@
             android:label="@string/actRegister"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".controller.Login">
+
+        </activity>
+
+        <activity
+            android:name=".controller.ListPassageiro"
+            android:label="@string/actCadPass"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".main.Dashboard">
+
+        </activity>
+
+        <activity
+            android:name=".controller.CadastroPassageiro"
+            android:label="@string/actPass"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".controller.ListPassageiro">
 
         </activity>
 

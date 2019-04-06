@@ -1,118 +1,144 @@
 package com.schelas.schelasvans.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.Button;
+import android.widget.EditText;
 
-
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.model.PassageiroRequest;
 import com.schelas.schelasvans.model.Passageiros;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class CadastroPassageiro extends AppCompatActivity {
-    private static final String URL_FETCH = "https://schelasvansapi.000webhostapp.com/api/get/Passageiros.php";
-    private RecyclerView rvPassageiros;
-    private ImageView ivToolbar;
-    private Toolbar toolbar;
-    private List<Passageiros> passageiros;
+
+    private EditText etnome;
+    private EditText etemail;
+    private EditText etphone;
+    private EditText etaddress;
+    private EditText etnumber;
+    private EditText etbairro;
+    private EditText etcidade;
+    private Button btncadastrar;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cadastro_passageiro);
+        setContentView(R.layout.activity_cadastro_passageiro);
         setUI();
-        setToolbar();
-        passageiros = getPassageiros();
-        setRecyclerView();
+        Act();
     }
 
     private void setUI(){
-        toolbar = findViewById(R.id.destool);
-        rvPassageiros = findViewById(R.id.rv_passageiros);
+        etnome = findViewById(R.id.etNome);
+        etemail= findViewById(R.id.etEmail);
+        etphone = findViewById(R.id.etPhone);
+        etaddress  = findViewById(R.id.etAdress);
+        etnumber  = findViewById(R.id.etAdressNum);
+        etbairro = findViewById(R.id.etAdressBairro);
+        etcidade= findViewById(R.id.etAdressCidade);
+        btncadastrar= findViewById(R.id.btnCadPass);
     }
 
-    private void setRecyclerView(){
-        rvPassageiros.setHasFixedSize(true);
-        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-        rvPassageiros.setLayoutManager(mLayoutManager);
+    private void Act(){
+        final Validator validator = new Validator();
 
-        final Adapter mAdapter = new Adapter(passageiros);
-        mAdapter.setOnClickListener(new View.OnClickListener() {
+        btncadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(CadastroPassageiro.this);
-                                    builder.setMessage(passageiros.get(rvPassageiros.getChildLayoutPosition(view)).getIdPass())
-                                            .setNegativeButton(passageiros.get(rvPassageiros.getChildLayoutPosition(view)).getName(), null)
-                                            .create()
-                                            .show();
-            }
-        });
+            public void onClick(View v) {
+                final String nome = etnome.getText().toString();
+                final String email = etemail.getText().toString();
+                final String phone= etphone.getText().toString();
+                final String address= etaddress.getText().toString();
+                final String number = etnumber.getText().toString();
+                final String bairro = etbairro.getText().toString();
+                final String cidade = etcidade.getText().toString();
 
-        rvPassageiros.setAdapter(mAdapter);
-        rvPassageiros.setItemAnimator(new DefaultItemAnimator());
-    }
+                if(validator.validateEmail(email)){
 
-    private List<Passageiros> getPassageiros(){
-        final List<Passageiros> passes = new ArrayList<>();
+                    if(validator.validateNome(nome)){
 
-        StringRequest stringRequest=new StringRequest(Request.Method.GET, URL_FETCH , new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONArray array = jsonObject.getJSONArray(response);
-                    for (int i = 0; i < array.length(); i++) {
-                        JSONObject ob = array.getJSONObject(i);
-                        Passageiros pass = new Passageiros(ob.getString("nomePass"), ob.getString("idPass"), 1);
-                        passes.add(pass);
+                        if(validator.validatePhone(phone)){
+
+                            if(validator.validateAddress(address)){
+
+                                if(validator.validateNumber(number)){
+
+                                    if(validator.validateBairro(bairro)){
+
+                                        if(validator.validateCidade(cidade)){
+
+                                            Response.Listener<String> responseListener = new Response.Listener<String>() {
+
+                                                @Override
+                                                public void onResponse(String response) {
+
+                                                    try {
+
+                                                        if (response.contains("true")) {
+
+                                                            Intent intent = new Intent(CadastroPassageiro.this, ListPassageiro.class);
+                                                            CadastroPassageiro.this.startActivity(intent);
+
+                                                        } else {
+                                                            AlertDialog.Builder builder = new AlertDialog.Builder(CadastroPassageiro.this);
+                                                            builder.setMessage(R.string.cadastroFail)
+                                                                    .setNegativeButton(R.string.tryAgain, null)
+                                                                    .create()
+                                                                    .show();
+                                                        }
+
+
+                                                    } catch (Exception e) {
+                                                        e.printStackTrace();
+                                                    }
+
+
+                                                    }
+                                                };
+
+                                            PassageiroRequest loginRequest = new PassageiroRequest(nome, email, phone, address, number, bairro, cidade, responseListener);
+                                            RequestQueue queue = Volley.newRequestQueue(CadastroPassageiro.this);
+                                            queue.add(loginRequest);
+
+
+
+                                        }else{
+                                            etcidade.setError("Campo inválido");
+                                        }
+
+                                    }else{
+                                        etbairro.setError("Campo inválido");
+                                    }
+
+                                }else{
+                                    etnumber.setError("Campo inválido");
+                                }
+
+                            }else{
+                                etaddress.setError("Campo inválido");
+                            }
+
+                        }else{
+                            etphone.setError("Campo inválido");
+                        }
+
+                    }else{
+                        etnome.setError("Campo inválido");
                     }
-                } catch (JSONException e) {
-                    e.printStackTrace();
+
+                }else{
+                    etemail.setError("Campo inválido");
                 }
 
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
         });
-
-        //TODO: Só responde na segunda vez.
-        RequestQueue requestQueue= Volley.newRequestQueue(CadastroPassageiro.this);
-        requestQueue.add(stringRequest);
-
-        return passes;
-    }
-
-    private void setToolbar(){
-        ivToolbar = findViewById(R.id.imgNavBar);
-        ivToolbar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-
     }
 
 }

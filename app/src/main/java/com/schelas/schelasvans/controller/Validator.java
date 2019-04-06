@@ -61,4 +61,51 @@ public class Validator {
         }
     }
 
+    boolean validateNome(String nome){
+        if(nome.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    boolean validatePhone(String phone){
+        if(phone.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    boolean validateAddress(String address){
+        if(address.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    boolean validateNumber(String number){
+        if(number.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    boolean validateBairro(String bairro){
+        if(bairro.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    boolean validateCidade(String cidade){
+        if(cidade.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }

@@ -130,8 +130,8 @@
                     android:layout_above="@+id/rLoginBtn"
                     android:textColor="@color/colorPrimaryText"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"/>
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="5dp"/>
 
                 <Button
                     android:id="@+id/rLoginBtn"

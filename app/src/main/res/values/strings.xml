@@ -7,7 +7,7 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_about">Sobre</string>
 
-    <string name="loginFail">Login falhou!</string>
+    <string name="loginFail">Falha no login!</string>
     <string name="tryAgain">Tente novamente</string>
     <string name="rUser">Usuário</string>
     <string name="rPass">Senha</string>
@@ -32,4 +32,19 @@
     <string name="back_button">Back button</string>
     <string name="regFail">Registro falhou!</string>
     <string name="apiOffline">Serviço indisponível no momento.</string>
+    <string name="actPass">Passageiros</string>
+    <string name="lbNomePass">Nome:</string>
+    <string name="lbEmailCadPass">Email:</string>
+    <string name="lbFoneCadPass">Telefone:</string>
+    <string name="btnCadPass">Cadastrar</string>
+    <string name="btnCad">Cadastrar</string>
+    <string name="lbAddressCadPass">Endereço:</string>
+    <string name="lbAddressNumCadPass">Número:</string>
+    <string name="lbAddressBairroCadPass">Bairro:</string>
+    <string name="lbAddressCidadeCadPass">Cidade:</string>
+    <string name="emailInvalid">Email inválido</string>
+    <string name="nomeInvalid">Campo \"Nome\" inválido</string>
+    <string name="phoneInvalid">Campo \"Telefone\" inválido</string>
+    <string name="campoInvalid">Campo inválido</string>
+    <string name="cadastroFail">Houve algum problema com o cadastro.</string>
 </resources>

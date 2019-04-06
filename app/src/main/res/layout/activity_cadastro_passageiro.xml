@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="com.schelas.schelasvans.controller.Registration">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/destool"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorAccent">
+
+        <ImageView
+            android:id="@+id/imgNavBar"
+            android:contentDescription="@string/back_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_back_24dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/actCadPass"
+            android:textColor="@color/colorTextWhite"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background2">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp">
+
+            <TextView
+                android:id="@+id/lbNome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbNomePass"
+                android:textColor="@color/colorPrimaryText"
+                android:layout_marginTop="20dp"
+                android:labelFor="@id/rEmail"
+                android:elevation="2dp"/>
+
+            <EditText
+                android:id="@+id/etNome"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:singleLine="true"
+                android:textColorHint="@color/colorSecondaryText"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/lbEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbEmailCadPass"
+                android:textColor="@color/colorPrimaryText"
+                android:layout_marginTop="20dp"
+                android:labelFor="@id/rEmail"
+                android:elevation="2dp"/>
+
+            <EditText
+                android:id="@+id/etEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:singleLine="true"
+                android:textColorHint="@color/colorSecondaryText"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"
+                />
+
+            <TextView
+                android:id="@+id/lbPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbFoneCadPass"
+                android:textColor="@color/colorPrimaryText"
+                android:layout_marginTop="20dp"
+                android:labelFor="@id/rUser"
+                android:elevation="2dp"/>
+
+            <EditText
+                android:id="@+id/etPhone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="phone"
+                android:singleLine="true"
+                android:textColorHint="@color/colorSecondaryText"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/lbAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbAddressCadPass"
+                android:textColor="@color/colorPrimaryText"
+                android:layout_marginTop="20dp"
+                android:labelFor="@id/rUser"
+                android:elevation="2dp"/>
+
+            <EditText
+                android:id="@+id/etAdress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress"
+                android:singleLine="true"
+                android:textColorHint="@color/colorSecondaryText"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/lbAddressNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbAddressNumCadPass"
+                android:textColor="@color/colorPrimaryText"
+                android:layout_marginTop="20dp"
+                android:labelFor="@id/rUser"
+                android:elevation="2dp"/>
+
+            <EditText
+                android:id="@+id/etAdressNum"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColorHint="@color/colorSecondaryText"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/lbAddressBairro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbAddressBairroCadPass"
+                android:textColor="@color/colorPrimaryText"
+                android:layout_marginTop="20dp"
+                android:labelFor="@id/rUser"
+                android:elevation="2dp"/>
+
+            <EditText
+                android:id="@+id/etAdressBairro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPostalAddress"
+                android:singleLine="true"
+                android:textColorHint="@color/colorSecondaryText"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"/>
+
+            <TextView
+                android:id="@+id/lbAddressCidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/lbAddressCidadeCadPass"
+                android:textColor="@color/colorPrimaryText"
+                android:layout_marginTop="20dp"
+                android:labelFor="@id/rUser"
+                android:elevation="2dp"/>
+
+            <EditText
+                android:id="@+id/etAdressCidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColorHint="@color/colorSecondaryText"
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"/>
+
+            <Button
+                android:id="@+id/btnCadPass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/btnCad"
+                android:textColor="@color/colorTextWhite"
+                android:background="@color/colorAccent"
+                android:textSize="14sp"
+                android:layout_margin="20dp"/>
+
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>
