@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +15,6 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.model.PassageiroRequest;
-import com.schelas.schelasvans.model.Passageiros;
 
 public class CadastroPassageiro extends AppCompatActivity {
 
@@ -26,7 +26,7 @@ public class CadastroPassageiro extends AppCompatActivity {
     private EditText etbairro;
     private EditText etcidade;
     private Button btncadastrar;
-
+    static final String TAG = "Schelas Vans";
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,7 +80,7 @@ public class CadastroPassageiro extends AppCompatActivity {
                                                 public void onResponse(String response) {
 
                                                     try {
-
+                                                        Log.d(TAG, response);
                                                         if (response.contains("true")) {
 
                                                             Intent intent = new Intent(CadastroPassageiro.this, ListPassageiro.class);
@@ -103,9 +103,9 @@ public class CadastroPassageiro extends AppCompatActivity {
                                                     }
                                                 };
 
-                                            PassageiroRequest loginRequest = new PassageiroRequest(nome, email, phone, address, number, bairro, cidade, responseListener);
+                                            PassageiroRequest passageiroRequest = new PassageiroRequest(nome, email, phone, address, number, bairro, cidade, responseListener);
                                             RequestQueue queue = Volley.newRequestQueue(CadastroPassageiro.this);
-                                            queue.add(loginRequest);
+                                            queue.add(passageiroRequest);
 
 
 

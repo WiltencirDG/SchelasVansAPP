@@ -19,7 +19,7 @@ public class PassageiroRequest extends StringRequest {
         params.put("address", address);
         params.put("number", number);
         params.put("bairro", bairro);
-
+        params.put("cidade", cidade);
     }
 
     @Override
