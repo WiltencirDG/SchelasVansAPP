@@ -39,10 +39,10 @@ public class CadastroPassageiro extends AppCompatActivity {
         etnome = findViewById(R.id.etNome);
         etemail= findViewById(R.id.etEmail);
         etphone = findViewById(R.id.etPhone);
-        etaddress  = findViewById(R.id.etAdress);
-        etnumber  = findViewById(R.id.etAdressNum);
-        etbairro = findViewById(R.id.etAdressBairro);
-        etcidade= findViewById(R.id.etAdressCidade);
+        etaddress  = findViewById(R.id.etAddress);
+        etnumber  = findViewById(R.id.etAddressNum);
+        etbairro = findViewById(R.id.etAddressBairro);
+        etcidade= findViewById(R.id.etAddressCidade);
         btncadastrar= findViewById(R.id.btnCadPass);
     }
 

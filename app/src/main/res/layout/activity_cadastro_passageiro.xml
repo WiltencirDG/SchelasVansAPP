@@ -38,165 +38,156 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp">
 
             <TextView
-                android:id="@+id/lbNome"
+                android:id="@+id/dadosPessoais"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lbNomePass"
-                android:textColor="@color/colorPrimaryText"
-                android:layout_marginTop="20dp"
-                android:labelFor="@id/rEmail"
-                android:elevation="2dp"/>
+                android:layout_marginTop="15dp"
+                android:layout_gravity="center"
+                android:text="@string/dadosPessoais"
+                android:textColor="@color/colorAccent"
+                android:textSize="23sp"
+                />
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_perfil_24dp"
+                android:tint="@color/colorPrimary"/>
 
             <EditText
                 android:id="@+id/etNome"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName"
+                android:hint="@string/lbNomeCadPass"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="50dp"
                 android:singleLine="true"
-                android:textColorHint="@color/colorSecondaryText"
-                android:layout_marginBottom="10dp"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="16sp"
-                />
-
-            <TextView
-                android:id="@+id/lbEmail"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lbEmailCadPass"
-                android:textColor="@color/colorPrimaryText"
-                android:layout_marginTop="20dp"
-                android:labelFor="@id/rEmail"
-                android:elevation="2dp"/>
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"/>
 
             <EditText
                 android:id="@+id/etEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress"
+                android:hint="@string/rEmail"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="50dp"
                 android:singleLine="true"
-                android:textColorHint="@color/colorSecondaryText"
-                android:layout_marginBottom="10dp"
+                android:textColorHint="@color/colorAccent"
                 android:textSize="16sp"
-                />
-
-            <TextView
-                android:id="@+id/lbPhone"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lbFoneCadPass"
-                android:textColor="@color/colorPrimaryText"
-                android:layout_marginTop="20dp"
-                android:labelFor="@id/rUser"
-                android:elevation="2dp"/>
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"/>
 
             <EditText
                 android:id="@+id/etPhone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="phone"
+                android:hint="@string/lbFoneCadPass"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="200dp"
                 android:singleLine="true"
-                android:textColorHint="@color/colorSecondaryText"
-                android:layout_marginBottom="10dp"
-                android:textSize="16sp"/>
+                android:textColorHint="@color/colorAccent"
+                android:textSize="16sp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"/>
+
 
             <TextView
-                android:id="@+id/lbAddress"
+                android:id="@+id/endereco"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/lbAddressCadPass"
-                android:textColor="@color/colorPrimaryText"
-                android:layout_marginTop="20dp"
-                android:labelFor="@id/rUser"
-                android:elevation="2dp"/>
+                android:layout_marginTop="2dp"
+                android:layout_gravity="center"
+                android:text="@string/Endereco"
+                android:textColor="@color/colorAccent"
+                android:textSize="23sp"
+                />
 
-            <EditText
-                android:id="@+id/etAdress"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textPostalAddress"
-                android:singleLine="true"
-                android:textColorHint="@color/colorSecondaryText"
-                android:layout_marginBottom="10dp"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:id="@+id/lbAddressNum"
+            <ImageView
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lbAddressNumCadPass"
-                android:textColor="@color/colorPrimaryText"
-                android:layout_marginTop="20dp"
-                android:labelFor="@id/rUser"
-                android:elevation="2dp"/>
+                android:layout_height="32dp"
+                android:layout_marginBottom="5dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_mark_24dp"
+                android:tint="@color/colorPrimary"/>
 
             <EditText
-                android:id="@+id/etAdressNum"
+                android:id="@+id/etAddress"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:hint="@string/lbAddressCadPass"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="50dp"
                 android:singleLine="true"
-                android:textColorHint="@color/colorSecondaryText"
-                android:layout_marginBottom="10dp"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:id="@+id/lbAddressBairro"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lbAddressBairroCadPass"
-                android:textColor="@color/colorPrimaryText"
-                android:layout_marginTop="20dp"
-                android:labelFor="@id/rUser"
-                android:elevation="2dp"/>
+                android:textColorHint="@color/colorAccent"
+                android:textSize="16sp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"/>
 
             <EditText
-                android:id="@+id/etAdressBairro"
+                android:id="@+id/etAddressNum"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPostalAddress"
+                android:hint="@string/lbAddressNumCadPass"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="150dp"
                 android:singleLine="true"
-                android:textColorHint="@color/colorSecondaryText"
-                android:layout_marginBottom="10dp"
-                android:textSize="16sp"/>
-
-            <TextView
-                android:id="@+id/lbAddressCidade"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/lbAddressCidadeCadPass"
-                android:textColor="@color/colorPrimaryText"
-                android:layout_marginTop="20dp"
-                android:labelFor="@id/rUser"
-                android:elevation="2dp"/>
+                android:textColorHint="@color/colorAccent"
+                android:textSize="16sp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"/>
 
             <EditText
-                android:id="@+id/etAdressCidade"
+                android:id="@+id/etAddressBairro"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number"
+                android:hint="@string/lbAddressBairroCadPass"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="50dp"
                 android:singleLine="true"
-                android:textColorHint="@color/colorSecondaryText"
-                android:layout_marginBottom="10dp"
-                android:textSize="16sp"/>
+                android:textColorHint="@color/colorAccent"
+                android:textSize="16sp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"/>
+
+            <EditText
+                android:id="@+id/etAddressCidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/lbAddressCidadeCadPass"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="150dp"
+                android:singleLine="true"
+                android:textColorHint="@color/colorAccent"
+                android:textSize="16sp"
+                android:paddingStart="10dp"
+                android:paddingEnd="10dp"/>
 
             <Button
                 android:id="@+id/btnCadPass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/btnCad"
-                android:textColor="@color/colorTextWhite"
-                android:background="@color/colorAccent"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="50dp"
+                android:text="@string/btnCadPass"
                 android:textSize="14sp"
-                android:layout_margin="20dp"/>
-
-
+                android:background="@color/colorAccent"
+                android:textColor="@color/colorTextWhite"
+                />
 
         </LinearLayout>
 
