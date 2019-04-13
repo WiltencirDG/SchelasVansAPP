@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context="com.schelas.schelasvans.controller.CadastroPassageiro">
+
+    <android.support.v7.widget.Toolbar
+    android:id="@+id/destool"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="@color/colorAccent">
+
+    <ImageView
+        android:id="@+id/imgNavBar"
+        android:contentDescription="@string/back_button"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:src="@drawable/ic_back_24dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/actDetailPass"
+        android:textColor="@color/colorTextWhite"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"/>
+
+</android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_shop"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/ic_person_24dp"/>
+
+
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                card_view:cardCornerRadius="4dp"
+                card_view:cardBackgroundColor="@color/white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:id="@+id/tv_n_shop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/passPlaceholderNome"
+                        android:textSize="21sp"
+                        android:textColor="@color/colorPrimaryText"
+                        android:textStyle="bold"
+                        android:paddingBottom="24dp"/>
+
+                    <TextView
+                        android:id="@+id/tv_a_shop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/passPlaceholderAddress"
+                        android:paddingBottom="12dp"
+                        android:textColor="@color/colorSecondaryText"/>
+
+
+                    <TextView
+                        android:id="@+id/tv_p_shop"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/passPlaceholderPhone"
+                        android:paddingBottom="20dp"
+                        android:textColor="@color/colorSecondaryText"/>
+
+                    <Button
+                        android:id="@+id/btn_map"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/detailPassVerMapa"
+                        android:paddingBottom="8dp"
+                        android:paddingTop="8dp"
+                        android:background="@color/colorAccent"
+                        android:textColor="@color/white" />
+
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

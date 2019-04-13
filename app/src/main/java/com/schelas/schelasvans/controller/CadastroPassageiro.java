@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -26,12 +27,14 @@ public class CadastroPassageiro extends AppCompatActivity {
     private EditText etbairro;
     private EditText etcidade;
     private Button btncadastrar;
+    private ImageView ivToolbar;
     static final String TAG = "Schelas Vans";
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_passageiro);
         setUI();
+        setToolbar();
         Act();
     }
 
@@ -44,6 +47,7 @@ public class CadastroPassageiro extends AppCompatActivity {
         etbairro = findViewById(R.id.etAddressBairro);
         etcidade= findViewById(R.id.etAddressCidade);
         btncadastrar= findViewById(R.id.btnCadPass);
+        ivToolbar = findViewById(R.id.imgNavBar);
     }
 
     private void Act(){
@@ -139,6 +143,17 @@ public class CadastroPassageiro extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void setToolbar(){
+        ivToolbar = findViewById(R.id.imgNavBar);
+        ivToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
     }
 
 }

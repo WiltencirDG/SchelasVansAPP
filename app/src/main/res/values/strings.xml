@@ -50,4 +50,10 @@
     <string name="dadosPessoais">Dados Pessoais</string>
     <string name="lbNomeCadPass">Nome</string>
     <string name="Endereco">Endereço</string>
+    <string name="actDetailPass">Passageiro</string>
+    <string name="passPlaceholderNome">Nome do Passageiro</string>
+    <string name="detailPassVerMapa">Ver no Mapa</string>
+    <string name="passPlaceholderPhone">Telefone</string>
+    <string name="passPlaceholderAddress">Endereço</string>
+    <string name="detPass">Passageiro</string>
 </resources>

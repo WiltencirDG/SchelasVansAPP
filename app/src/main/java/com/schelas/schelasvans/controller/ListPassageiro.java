@@ -82,11 +82,14 @@ public class ListPassageiro extends AppCompatActivity {
         mAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(ListPassageiro.this);
-                                    builder.setMessage(passageiros.get(rvPassageiros.getChildLayoutPosition(view)).getIdPass())
-                                            .setNegativeButton(passageiros.get(rvPassageiros.getChildLayoutPosition(view)).getName(), null)
-                                            .create()
-                                            .show();
+//                AlertDialog.Builder builder = new AlertDialog.Builder(ListPassageiro.this);
+//                                    builder.setMessage(passageiros.get(rvPassageiros.getChildLayoutPosition(view)).getIdPass())
+//                                            .setNegativeButton(passageiros.get(rvPassageiros.getChildLayoutPosition(view)).getName(), null)
+//                                            .create()
+//                                            .show();
+
+                goToDescription(passageiros.get(rvPassageiros.getChildLayoutPosition(view)));
+
             }
         });
 
@@ -94,6 +97,12 @@ public class ListPassageiro extends AppCompatActivity {
         rvPassageiros.setItemAnimator(new DefaultItemAnimator());
 
 
+    }
+
+    private void goToDescription(Passageiros passageiro){
+        Intent intent = new Intent(ListPassageiro.this, DetailPassageiro.class);
+        intent.putExtra("passageiro", passageiro);
+        startActivity(intent);
     }
 
     private List<Passageiros> getPassageiros(){
@@ -107,7 +116,7 @@ public class ListPassageiro extends AppCompatActivity {
 
                     for (int i = 0; i < jobj.length(); i++) {
                         JSONObject ob = jobj.getJSONObject(i);
-                        Passageiros pass = new Passageiros(ob.getString("PassageiroNome"), ob.getString("PassageiroId"), 1);
+                        Passageiros pass = new Passageiros(ob.getString("PassageiroNome"), ob.getString("PassageiroId"),ob.getString("PassageiroLogradouro"),ob.getString("PassageiroFone"));
                         passes.add(pass);
 
                     }

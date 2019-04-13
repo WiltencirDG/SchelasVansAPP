@@ -58,6 +58,14 @@
 
         </activity>
 
+        <activity
+            android:name=".controller.DetailPassageiro"
+            android:label="@string/detPass"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".controller.ListPassageiro">
+
+        </activity>
+
     </application>
 
 </manifest>
