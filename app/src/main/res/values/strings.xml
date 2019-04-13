@@ -56,4 +56,8 @@
     <string name="passPlaceholderPhone">Telefone</string>
     <string name="passPlaceholderAddress">Endereço</string>
     <string name="detPass">Passageiro</string>
+
+    <string name="google_maps_key">AIzaSyBbdeCeTEyhOaS_LdgbmPD_v0-vbE3DOyk</string>
+    <string name="addressNotExist">Endereço não existe. Atualize o cadastro.</string>
+    <string name="OK">OK</string>
 </resources>

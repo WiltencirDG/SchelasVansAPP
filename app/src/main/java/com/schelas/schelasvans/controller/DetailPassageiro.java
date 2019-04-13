@@ -1,5 +1,6 @@
 package com.schelas.schelasvans.controller;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -28,7 +29,7 @@ public class DetailPassageiro extends AppCompatActivity {
         passageiro = (Passageiros) getIntent().getSerializableExtra("passageiro");
         setUI();
         setData(passageiro);
-//        setMap();
+        setMap();
         setToolbar();
     }
 
@@ -54,23 +55,23 @@ public class DetailPassageiro extends AppCompatActivity {
 
     private void setData(Passageiros passageiro){
         tvName.setText(passageiro.getName());
-        tvAddress.setText(passageiro.getAddress());
+        tvAddress.setText(passageiro.getAddress()+", "+passageiro.getAddressNumber());
         tvPhone.setText(passageiro.getPhone());
     }
 
-//    private void setMap(){
-//        btnMap.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Maps(studios);
-//            }
-//        });
-//    }
-//
-//    private void Maps(GetStudios studios){
-//        Intent intent = new Intent(Description.this, Maps.class);
-//        intent.putExtra("studios", studios);
-//        startActivity(intent);
-//    }
+    private void setMap(){
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Maps(passageiro);
+            }
+        });
+    }
+
+    private void Maps(Passageiros passageiro){
+        Intent intent = new Intent(DetailPassageiro.this, Maps.class);
+        intent.putExtra("passageiro", passageiro);
+        startActivity(intent);
+    }
 
 }

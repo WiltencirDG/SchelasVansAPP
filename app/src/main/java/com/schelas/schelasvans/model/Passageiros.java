@@ -7,13 +7,15 @@ public class Passageiros implements Serializable {
     private String idPass;
     private String name;
     private String Address;
+    private String AddressNumber;
     private String Phone;
 
-    public Passageiros(String name, String idPass, String Address, String Phone ){
+    public Passageiros(String name, String idPass, String Address, String AddressNumber, String Phone ){
         setName(name);
         setIdPass(idPass);
         setPhone(Phone);
         setAddress(Address);
+        setAddressNumber(AddressNumber);
     }
 
     public String getName() {
@@ -46,5 +48,13 @@ public class Passageiros implements Serializable {
 
     public String getPhone() {
         return Phone;
+    }
+
+    public void setAddressNumber(String addressNumber) {
+        AddressNumber = addressNumber;
+    }
+
+    public String getAddressNumber() {
+        return AddressNumber;
     }
 }
