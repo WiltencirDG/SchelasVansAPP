@@ -60,4 +60,18 @@
     <string name="google_maps_key">AIzaSyBbdeCeTEyhOaS_LdgbmPD_v0-vbE3DOyk</string>
     <string name="addressNotExist">Endereço não existe. Atualize o cadastro.</string>
     <string name="OK">OK</string>
+    <string name="actCadDest">Cadastro de Destinos</string>
+    <string name="actCadVeic">Cadastro de Veiculos</string>
+    <string name="veiculo">Veículo</string>
+    <string name="placa">Placa</string>
+    <string name="cor">Cor</string>
+    <string name="modelo">Modelo</string>
+    <string name="marca">Marca</string>
+    <string name="capacidade">Capacidade</string>
+    <string name="cadastro">Cadastrar</string>
+    <string name="destino">Destino</string>
+    <string name="rua">Logradouro</string>
+    <string name="num">Nº</string>
+    <string name="bairro">Bairro</string>
+    <string name="city">Cidade</string>
 </resources>

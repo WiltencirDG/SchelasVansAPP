@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/destool"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorAccent">
+
+        <ImageView
+            android:id="@+id/imgNavBar"
+            android:contentDescription="@string/back_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_back_24dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/actCadDest"
+            android:textColor="@color/colorTextWhite"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <TextView
+        android:id="@+id/destino"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:layout_gravity="center"
+        android:text="@string/destino"
+        android:textColor="@color/colorAccent"
+        android:textSize="23sp"
+        />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="35dp"
+        android:layout_marginBottom="50dp"
+        android:layout_gravity="center"
+        android:src="@drawable/ic_destino_24dp" />
+
+    <EditText
+        android:id="@+id/rua"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/rua"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="50dp"
+        android:singleLine="true"
+        android:textColorHint="@color/colorAccent"
+        android:textSize="16sp"
+        android:paddingStart="10dp"/>
+
+    <EditText
+        android:id="@+id/numero"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/num"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="300dp"
+        android:singleLine="true"
+        android:textColorHint="@color/colorAccent"
+        android:textSize="16sp"
+        android:paddingStart="10dp"/>
+
+    <EditText
+        android:id="@+id/bairro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/bairro"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="50dp"
+        android:singleLine="true"
+        android:textColorHint="@color/colorAccent"
+        android:textSize="16sp"
+        android:paddingStart="10dp"/>
+
+    <EditText
+        android:id="@+id/cidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/city"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="300dp"
+        android:singleLine="true"
+        android:textColorHint="@color/colorAccent"
+        android:textSize="16sp"
+        android:paddingStart="10dp"/>
+
+    <Button
+        android:id="@+id/cadastro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="130dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_gravity="center"
+        android:text="@string/cadastro"
+        android:textSize="14sp"
+        android:background="@color/colorAccent"
+        android:textColor="@color/colorTextWhite"
+        />
+
+</LinearLayout>
