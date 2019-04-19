@@ -108,4 +108,12 @@ public class Validator {
             return true;
         }
     }
+
+    boolean validateEmpty(String data){
+        if(data.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }

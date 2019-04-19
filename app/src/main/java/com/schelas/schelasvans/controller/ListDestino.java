@@ -12,7 +12,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.ImageView;
 
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -20,6 +19,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.model.DestinoRequest;
+import com.schelas.schelasvans.model.Destinos;
 import com.schelas.schelasvans.model.Passageiros;
 
 import org.json.JSONArray;
@@ -29,31 +30,31 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListPassageiro extends AppCompatActivity {
-    private static final String URL_FETCH = "https://schelasvansapi.000webhostapp.com/api/get/Passageiro.php";
+public class ListDestino extends AppCompatActivity {
+    private static final String URL_FETCH = "https://schelasvansapi.000webhostapp.com/api/get/Destino.php";
     private static final String TAG = "SchelasVans";
-    private RecyclerView rvPassageiros;
+    private RecyclerView rvDestinos;
     private ImageView ivToolbar;
     private Toolbar toolbar;
-    private List<Passageiros> passageiros;
-    private AdapterPassageiros mAdapterPassageiros;
+    private List<Destinos> destinos;
+    private AdapterDestinos mAdapter;
     private FloatingActionButton fab;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_passageiro);
+        setContentView(R.layout.activity_list_destino);
         setUI();
         setToolbar();
-        passageiros = getPassageiros();
+        destinos = getDestinos();
         setRecyclerView();
         setFab();
     }
 
     private void setUI(){
         toolbar = findViewById(R.id.destool);
-        rvPassageiros = findViewById(R.id.rv_passageiros);
-        fab = (FloatingActionButton) findViewById(R.id.fabPass);
+        rvDestinos = findViewById(R.id.rv_destinos);
+        fab = findViewById(R.id.fabPass);
     }
 
     private void setFab(){
@@ -61,7 +62,7 @@ public class ListPassageiro extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent register = new Intent(ListPassageiro.this, CadastroPassageiro.class);
+                Intent register = new Intent(ListDestino.this, CadastroDestino.class);
                 startActivity(register);
             }
         });
@@ -71,34 +72,34 @@ public class ListPassageiro extends AppCompatActivity {
 
     private void setRecyclerView(){
 
-        rvPassageiros.setHasFixedSize(true);
+        rvDestinos.setHasFixedSize(true);
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-        rvPassageiros.setLayoutManager(mLayoutManager);
+        rvDestinos.setLayoutManager(mLayoutManager);
 
-        mAdapterPassageiros = new AdapterPassageiros(passageiros);
-        mAdapterPassageiros.setOnClickListener(new View.OnClickListener() {
+        mAdapter = new AdapterDestinos(destinos);
+        mAdapter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                goToDescription(passageiros.get(rvPassageiros.getChildLayoutPosition(view)));
+                goToDescription(destinos.get(rvDestinos.getChildLayoutPosition(view)));
 
             }
         });
 
-        rvPassageiros.setAdapter(mAdapterPassageiros);
-        rvPassageiros.setItemAnimator(new DefaultItemAnimator());
+        rvDestinos.setAdapter(mAdapter);
+        rvDestinos.setItemAnimator(new DefaultItemAnimator());
 
 
     }
 
-    private void goToDescription(Passageiros passageiro){
-        Intent intent = new Intent(ListPassageiro.this, DetailPassageiro.class);
-        intent.putExtra("passageiro", passageiro);
+    private void goToDescription(Destinos destinos){
+        Intent intent = new Intent(ListDestino.this, DetailDestino.class);
+        intent.putExtra("destinos",destinos.toString());
         startActivity(intent);
     }
 
-    private List<Passageiros> getPassageiros(){
-        final List<Passageiros> passes = new ArrayList<>();
+    private List<Destinos> getDestinos(){
+        final List<Destinos> dests = new ArrayList<>();
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_FETCH , new Response.Listener<String>() {
             @Override
@@ -108,12 +109,12 @@ public class ListPassageiro extends AppCompatActivity {
 
                     for (int i = 0; i < jobj.length(); i++) {
                         JSONObject ob = jobj.getJSONObject(i);
-                        Passageiros pass = new Passageiros(ob.getString("PassageiroNome"), ob.getString("PassageiroId"),ob.getString("PassageiroLogradouro"),ob.getString("PassageiroNum"),ob.getString("PassageiroFone"));
-                        passes.add(pass);
+                        Destinos dest = new Destinos(ob.getString("DestinoDesc"),ob.getString("DestinoLogradouro"),ob.getString("DestinoNum"),ob.getString("DestinoBairro"),ob.getString("DestinoCidade"));
+                        dests.add(dest);
 
                     }
 
-                    mAdapterPassageiros.notifyDataSetChanged();
+                    mAdapter.notifyDataSetChanged();
 
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -127,10 +128,10 @@ public class ListPassageiro extends AppCompatActivity {
             }
         });
 
-        RequestQueue requestQueue= Volley.newRequestQueue(ListPassageiro.this);
+        RequestQueue requestQueue= Volley.newRequestQueue(ListDestino.this);
         requestQueue.add(stringRequest);
 
-        return passes;
+        return dests;
     }
 
     private void setToolbar(){

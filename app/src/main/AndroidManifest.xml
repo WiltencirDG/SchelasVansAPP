@@ -66,6 +66,30 @@
 
         </activity>
 
+        <activity
+            android:name=".controller.ListDestino"
+            android:label="@string/actCadPass"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".main.Dashboard">
+
+        </activity>
+
+        <activity
+            android:name=".controller.CadastroDestino"
+            android:label="@string/actPass"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".controller.ListDestino">
+
+        </activity>
+
+        <activity
+            android:name=".controller.DetailDestino"
+            android:label="@string/detPass"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".controller.ListPassageiro">
+
+        </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key"/>

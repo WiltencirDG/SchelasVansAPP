@@ -13,13 +13,13 @@ import com.schelas.schelasvans.model.Passageiros;
 import java.util.List;
 
 
-public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>
+public class AdapterPassageiros extends RecyclerView.Adapter<AdapterPassageiros.ViewHolder>
         implements View.OnClickListener{
 
     private List<Passageiros> mData;
     private View.OnClickListener listener;
 
-    public Adapter(List<Passageiros> myData) {
+    public AdapterPassageiros(List<Passageiros> myData) {
         mData = myData;
     }
 
@@ -36,9 +36,9 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>
     }
 
     @Override
-    public Adapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public AdapterPassageiros.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.holder, parent, false);
+                .inflate(R.layout.holder_passageiros, parent, false);
         view.setOnClickListener(this);
         return new ViewHolder(view);
     }
@@ -46,7 +46,7 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder>
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        //holder.ivImage.setImageResource(mData.get(position).getIdImage());
+        //holder_passageiros.ivImage.setImageResource(mData.get(position).getIdImage());
         holder.tvName.setText(mData.get(position).getName());
     }
 

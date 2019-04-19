@@ -74,4 +74,6 @@
     <string name="num">Nº</string>
     <string name="bairro">Bairro</string>
     <string name="city">Cidade</string>
+    <string name="actDest">Destinos</string>
+    <string name="descricao">Descrição</string>
 </resources>

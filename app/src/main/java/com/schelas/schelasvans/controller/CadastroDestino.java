@@ -15,38 +15,34 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.model.DestinoRequest;
 import com.schelas.schelasvans.model.PassageiroRequest;
 
 public class CadastroDestino extends AppCompatActivity {
 
-    private EditText etnome;
-    private EditText etemail;
-    private EditText etphone;
-    private EditText etaddress;
-    private EditText etnumber;
-    private EditText etbairro;
-    private EditText etcidade;
+
+    private EditText etRua;
+    private EditText etNum;
+    private EditText etBairro;
+    private EditText etCidade;
     private Button btncadastrar;
     private ImageView ivToolbar;
     static final String TAG = "Schelas Vans";
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_passageiro);
+        setContentView(R.layout.activity_cadastro_destino);
         setUI();
         setToolbar();
         Act();
     }
 
     private void setUI(){
-        etnome = findViewById(R.id.etNome);
-        etemail= findViewById(R.id.etEmail);
-        etphone = findViewById(R.id.etPhone);
-        etaddress  = findViewById(R.id.etAddress);
-        etnumber  = findViewById(R.id.etAddressNum);
-        etbairro = findViewById(R.id.etAddressBairro);
-        etcidade= findViewById(R.id.etAddressCidade);
-        btncadastrar= findViewById(R.id.btnCadPass);
+        etRua = findViewById(R.id.rua);
+        etNum = findViewById(R.id.numero);
+        etBairro = findViewById(R.id.bairro);
+        etCidade = findViewById(R.id.cidade);
+        btncadastrar = findViewById(R.id.btnCadastroDest);
         ivToolbar = findViewById(R.id.imgNavBar);
     }
 
@@ -56,91 +52,56 @@ public class CadastroDestino extends AppCompatActivity {
         btncadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String nome = etnome.getText().toString();
-                final String email = etemail.getText().toString();
-                final String phone= etphone.getText().toString();
-                final String address= etaddress.getText().toString();
-                final String number = etnumber.getText().toString();
-                final String bairro = etbairro.getText().toString();
-                final String cidade = etcidade.getText().toString();
+                final String rua = etRua.getText().toString();
+                final String number = etNum.getText().toString();
+                final String bairro = etBairro.getText().toString();
+                final String cidade = etCidade.getText().toString();
 
-                if(validator.validateEmail(email)){
+                if(validator.validateEmpty(rua)){
 
-                    if(validator.validateNome(nome)){
+                    if(validator.validateEmpty(bairro)) {
 
-                        if(validator.validatePhone(phone)){
+                        if (validator.validateEmpty(cidade)) {
+                            Response.Listener<String> responseListener = new Response.Listener<String>() {
+                                @Override
+                                public void onResponse(String response) {
 
-                            if(validator.validateAddress(address)){
+                                    try {
+                                        Log.d(TAG, response);
+                                        if (response.contains("true")) {
 
-                                if(validator.validateNumber(number)){
+                                            Intent intent = new Intent(CadastroDestino.this, ListDestino.class);
+                                            CadastroDestino.this.startActivity(intent);
 
-                                    if(validator.validateBairro(bairro)){
-
-                                        if(validator.validateCidade(cidade)){
-
-                                            Response.Listener<String> responseListener = new Response.Listener<String>() {
-
-                                                @Override
-                                                public void onResponse(String response) {
-
-                                                    try {
-                                                        Log.d(TAG, response);
-                                                        if (response.contains("true")) {
-
-                                                            Intent intent = new Intent(CadastroDestino.this, ListPassageiro.class);
-                                                            CadastroDestino.this.startActivity(intent);
-
-                                                        } else {
-                                                            AlertDialog.Builder builder = new AlertDialog.Builder(CadastroDestino.this);
-                                                            builder.setMessage(R.string.cadastroFail)
-                                                                    .setNegativeButton(R.string.tryAgain, null)
-                                                                    .create()
-                                                                    .show();
-                                                        }
-
-
-                                                    } catch (Exception e) {
-                                                        e.printStackTrace();
-                                                    }
-
-
-                                                    }
-                                                };
-
-                                            PassageiroRequest passageiroRequest = new PassageiroRequest(nome, email, phone, address, number, bairro, cidade, responseListener);
-                                            RequestQueue queue = Volley.newRequestQueue(CadastroDestino.this);
-                                            queue.add(passageiroRequest);
-
-
-
-                                        }else{
-                                            etcidade.setError("Campo inválido");
+                                        } else {
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(CadastroDestino.this);
+                                            builder.setMessage(R.string.cadastroFail)
+                                                    .setNegativeButton(R.string.tryAgain, null)
+                                                    .create()
+                                                    .show();
                                         }
 
-                                    }else{
-                                        etbairro.setError("Campo inválido");
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
                                     }
 
-                                }else{
-                                    etnumber.setError("Campo inválido");
+
                                 }
+                            };
 
-                            }else{
-                                etaddress.setError("Campo inválido");
-                            }
-
-                        }else{
-                            etphone.setError("Campo inválido");
+                            DestinoRequest destinoRequest = new DestinoRequest(rua, number, bairro, cidade, responseListener);
+                            RequestQueue queue = Volley.newRequestQueue(CadastroDestino.this);
+                            queue.add(destinoRequest);
+                        } else {
+                            etCidade.setError("Cidade inválida.");
                         }
-
                     }else{
-                        etnome.setError("Campo inválido");
+                        etBairro.setError("Bairro inválido.");
                     }
-
                 }else{
-                    etemail.setError("Campo inválido");
+                    etRua.setError("Rua inválida.");
                 }
-
             }
         });
     }
