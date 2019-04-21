@@ -3,13 +3,15 @@ package com.schelas.schelasvans.model;
 import java.io.Serializable;
 
 public class Destinos implements Serializable {
+    private Integer id;
     private String rua;
     private String num;
     private String bairro;
     private String cidade;
     private String descricao;
 
-    public Destinos(String descricao, String rua, String num, String bairro, String cidade) {
+    public Destinos(Integer id, String descricao, String rua, String num, String bairro, String cidade) {
+        setId(id);
         setRua(rua);
         setNum(num);
         setBairro(bairro);
@@ -55,5 +57,13 @@ public class Destinos implements Serializable {
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 }

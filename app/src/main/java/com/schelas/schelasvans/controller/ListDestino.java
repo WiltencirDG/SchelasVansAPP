@@ -109,7 +109,7 @@ public class ListDestino extends AppCompatActivity {
 
                     for (int i = 0; i < jobj.length(); i++) {
                         JSONObject ob = jobj.getJSONObject(i);
-                        Destinos dest = new Destinos(ob.getString("DestinoDesc"),ob.getString("DestinoLogradouro"),ob.getString("DestinoNum"),ob.getString("DestinoBairro"),ob.getString("DestinoCidade"));
+                        Destinos dest = new Destinos(ob.getInt("DestinoId"),ob.getString("DestinoDesc"),ob.getString("DestinoLogradouro"),ob.getString("DestinoNum"),ob.getString("DestinoBairro"),ob.getString("DestinoCidade"));
                         dests.add(dest);
 
                     }
