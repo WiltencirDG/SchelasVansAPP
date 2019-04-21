@@ -15,6 +15,7 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.model.Destinos;
 import com.schelas.schelasvans.model.Passageiros;
 
 import java.io.IOException;
@@ -23,6 +24,7 @@ import java.util.List;
 public class Maps extends FragmentActivity implements OnMapReadyCallback{
     private GoogleMap mMap;
     private Passageiros passageiro;
+    private Destinos destino;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -30,6 +32,7 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback{
         setContentView(R.layout.maps);
 
         passageiro = (Passageiros) getIntent().getSerializableExtra("passageiro");
+        destino = (Destinos) getIntent().getSerializableExtra("destino");
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.Maps);
@@ -41,12 +44,20 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback{
     @Override
     public void onMapReady(GoogleMap googleMap){
         mMap = googleMap;
+        String address;
+        String descricao;
+        if(passageiro != null) {
+            address = passageiro.getAddress() + "," + passageiro.getAddressNumber();
+            descricao = passageiro.getName();
+        }else {
+            address = destino.getRua() + ", " + destino.getNum();
+            descricao = destino.getDescricao();
+        }
 
-        String address = passageiro.getAddress()+ "," + passageiro.getAddressNumber();
         LatLng latlng = getLocationFromAddress(Maps.this, address);
 
         if(latlng != null) {
-            mMap.addMarker(new MarkerOptions().position(latlng).title(passageiro.getName()));
+            mMap.addMarker(new MarkerOptions().position(latlng).title(descricao));
             CameraPosition cameraPosition = new CameraPosition.Builder()
                     .target(latlng)
                     .zoom(18)

@@ -9,35 +9,34 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.model.Destinos;
 import com.schelas.schelasvans.model.Passageiros;
 
 public class DetailDestino extends AppCompatActivity {
 
-    private ImageView ivImage;
     private TextView tvName;
     private TextView tvAddress;
-    private TextView tvPhone;
+    private TextView tvCidade;
     private Button btnMap;
     private ImageView ivToolbar;
-    private Passageiros passageiro;
+    private Destinos destino;
 
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_passageiro);
+        setContentView(R.layout.activity_detail_destino);
 
-        passageiro = (Passageiros) getIntent().getSerializableExtra("passageiro");
+        destino = (Destinos) getIntent().getSerializableExtra("destino");
         setUI();
-        setData(passageiro);
+        setData(destino);
         setMap();
         setToolbar();
     }
 
     private void setUI(){
-        ivImage = (ImageView) findViewById(R.id.iv_shop);
-        tvName = (TextView) findViewById(R.id.tv_n_shop);
-        tvAddress = (TextView) findViewById(R.id.tv_a_shop);
-        tvPhone = (TextView) findViewById(R.id.tv_p_shop);
+        tvName = (TextView) findViewById(R.id.tv_nomeDestino);
+        tvAddress = (TextView) findViewById(R.id.tv_addressDestino);
+        tvCidade = (TextView) findViewById(R.id.tv_cityDestino);
         btnMap = (Button) findViewById(R.id.btn_map);
     }
 
@@ -53,24 +52,24 @@ public class DetailDestino extends AppCompatActivity {
 
     }
 
-    private void setData(Passageiros passageiro){
-        tvName.setText(passageiro.getName());
-        tvAddress.setText(passageiro.getAddress()+", "+passageiro.getAddressNumber());
-        tvPhone.setText(passageiro.getPhone());
+    private void setData(Destinos destino){
+        tvName.setText(destino.getDescricao());
+        tvAddress.setText(destino.getRua()+", "+destino.getNum());
+        tvCidade.setText(destino.getCidade());
     }
 
     private void setMap(){
         btnMap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Maps(passageiro);
+                Maps(destino);
             }
         });
     }
 
-    private void Maps(Passageiros passageiro){
+    private void Maps(Destinos destino){
         Intent intent = new Intent(DetailDestino.this, Maps.class);
-        intent.putExtra("passageiro", passageiro);
+        intent.putExtra("destino", destino.toString());
         startActivity(intent);
     }
 

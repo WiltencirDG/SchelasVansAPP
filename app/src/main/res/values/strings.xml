@@ -76,4 +76,7 @@
     <string name="city">Cidade</string>
     <string name="actDest">Destinos</string>
     <string name="descricao">Descrição</string>
+    <string name="actDetailDest">Destinos</string>
+    <string name="destinoCidade">Cidade</string>
+    <string name="destinoPlaceholderNome">Nome do Destino</string>
 </resources>
