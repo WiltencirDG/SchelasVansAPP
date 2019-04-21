@@ -68,7 +68,7 @@
 
         <activity
             android:name=".controller.ListDestino"
-            android:label="@string/actCadPass"
+            android:label="@string/actCadDest"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".main.Dashboard">
 
@@ -76,7 +76,7 @@
 
         <activity
             android:name=".controller.CadastroDestino"
-            android:label="@string/actPass"
+            android:label="@string/actDest"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".controller.ListDestino">
 
@@ -84,7 +84,7 @@
 
         <activity
             android:name=".controller.DetailDestino"
-            android:label="@string/detPass"
+            android:label="@string/detDest"
             android:theme="@style/AppTheme.NoActionBar"
             android:parentActivityName=".controller.ListPassageiro">
 

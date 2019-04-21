@@ -79,4 +79,5 @@
     <string name="actDetailDest">Destinos</string>
     <string name="destinoCidade">Cidade</string>
     <string name="destinoPlaceholderNome">Nome do Destino</string>
+    <string name="detDest">Destino</string>
 </resources>

@@ -69,7 +69,7 @@ public class DetailDestino extends AppCompatActivity {
 
     private void Maps(Destinos destino){
         Intent intent = new Intent(DetailDestino.this, Maps.class);
-        intent.putExtra("destino", destino.toString());
+        intent.putExtra("destino", destino);
         startActivity(intent);
     }
 

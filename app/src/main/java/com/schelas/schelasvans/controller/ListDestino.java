@@ -94,7 +94,7 @@ public class ListDestino extends AppCompatActivity {
 
     private void goToDescription(Destinos destinos){
         Intent intent = new Intent(ListDestino.this, DetailDestino.class);
-        intent.putExtra("destinos",destinos.toString());
+        intent.putExtra("destino",destinos);
         startActivity(intent);
     }
 

@@ -1,6 +1,8 @@
 package com.schelas.schelasvans.model;
 
-public class Destinos {
+import java.io.Serializable;
+
+public class Destinos implements Serializable {
     private String rua;
     private String num;
     private String bairro;

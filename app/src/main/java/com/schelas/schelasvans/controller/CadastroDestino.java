@@ -20,7 +20,7 @@ import com.schelas.schelasvans.model.PassageiroRequest;
 
 public class CadastroDestino extends AppCompatActivity {
 
-
+    private EditText etDesc;
     private EditText etRua;
     private EditText etNum;
     private EditText etBairro;
@@ -38,6 +38,7 @@ public class CadastroDestino extends AppCompatActivity {
     }
 
     private void setUI(){
+        etDesc = findViewById(R.id.descricao);
         etRua = findViewById(R.id.rua);
         etNum = findViewById(R.id.numero);
         etBairro = findViewById(R.id.bairro);
@@ -52,12 +53,13 @@ public class CadastroDestino extends AppCompatActivity {
         btncadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                final String desc = etDesc.getText().toString();
                 final String rua = etRua.getText().toString();
                 final String number = etNum.getText().toString();
                 final String bairro = etBairro.getText().toString();
                 final String cidade = etCidade.getText().toString();
 
-                if(validator.validateEmpty(rua)){
+                if(validator.validateEmpty(rua) && validator.validateEmpty(desc)){
 
                     if(validator.validateEmpty(bairro)) {
 
@@ -90,7 +92,7 @@ public class CadastroDestino extends AppCompatActivity {
                                 }
                             };
 
-                            DestinoRequest destinoRequest = new DestinoRequest(rua, number, bairro, cidade, responseListener);
+                            DestinoRequest destinoRequest = new DestinoRequest(desc,rua, number, bairro, cidade, responseListener);
                             RequestQueue queue = Volley.newRequestQueue(CadastroDestino.this);
                             queue.add(destinoRequest);
                         } else {
