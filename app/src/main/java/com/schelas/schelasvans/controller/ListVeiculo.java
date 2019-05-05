@@ -9,6 +9,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -19,9 +20,6 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
-import com.schelas.schelasvans.model.DestinoRequest;
-import com.schelas.schelasvans.model.Destinos;
-import com.schelas.schelasvans.model.Passageiros;
 import com.schelas.schelasvans.model.Veiculos;
 
 import org.json.JSONArray;
@@ -54,7 +52,7 @@ public class ListVeiculo extends AppCompatActivity {
 
     private void setUI(){
         toolbar = findViewById(R.id.destool);
-        rvVeiculos = findViewById(R.id.rv_destinos);
+        rvVeiculos = findViewById(R.id.rv_veiculos);
         fab = findViewById(R.id.fabPass);
     }
 

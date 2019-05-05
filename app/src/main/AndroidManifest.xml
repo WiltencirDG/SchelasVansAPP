@@ -91,13 +91,28 @@
         </activity>
 
         <activity
-            android:name=".controller.CadastroVeiculo"
-            android:label="@string/actVeic"
+            android:name=".controller.ListVeiculo"
+            android:label="@string/actCadVeic"
             android:theme="@style/AppTheme.NoActionBar"
-            >
+            android:parentActivityName=".main.Dashboard">
 
         </activity>
 
+        <activity
+            android:name=".controller.CadastroVeiculo"
+            android:label="@string/actVeic"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".controller.ListVeiculo">
+
+        </activity>
+
+        <activity
+            android:name=".controller.DetailVeiculo"
+            android:label="@string/detVeic"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:parentActivityName=".controller.ListVeiculo">
+
+        </activity>
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

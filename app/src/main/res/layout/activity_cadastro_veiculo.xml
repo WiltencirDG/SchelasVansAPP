@@ -33,96 +33,110 @@
 
     </android.support.v7.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/veiculo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_gravity="center"
-        android:text="@string/veiculo"
-        android:textColor="@color/colorAccent"
-        android:textSize="23sp"
-        />
-
-    <ImageView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="35dp"
-        android:layout_marginBottom="50dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_veiculo_24dp" />
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
-    <EditText
-        android:id="@+id/placa"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/placa"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="130dp"
-        android:singleLine="true"
-        android:textColorHint="@color/colorAccent"
-        android:textSize="16sp"
-        android:paddingStart="10dp"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <EditText
-        android:id="@+id/cor"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/cor"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="200dp"
-        android:singleLine="true"
-        android:textColorHint="@color/colorAccent"
-        android:textSize="16sp"
-        android:paddingStart="10dp"/>
+            <TextView
+                android:id="@+id/veiculo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="100dp"
+                android:layout_gravity="center"
+                android:text="@string/veiculo"
+                android:textColor="@color/colorAccent"
+                android:textSize="23sp"
+                />
 
-    <EditText
-        android:id="@+id/modelo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/modelo"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="50dp"
-        android:singleLine="true"
-        android:textColorHint="@color/colorAccent"
-        android:textSize="16sp"
-        android:paddingStart="10dp"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_marginBottom="50dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_veiculo_24dp" />
 
-    <EditText
-        android:id="@+id/marca"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/marca"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="50dp"
-        android:singleLine="true"
-        android:textColorHint="@color/colorAccent"
-        android:textSize="16sp"
-        android:paddingStart="10dp"/>
+            <EditText
+                android:id="@+id/placa"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/placa"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="130dp"
+                android:singleLine="true"
+                android:textColorHint="@color/colorAccent"
+                android:textSize="16sp"
+                android:paddingStart="10dp"/>
 
-    <EditText
-        android:id="@+id/capacidade"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="@string/capacidade"
-        android:layout_marginBottom="20dp"
-        android:layout_marginEnd="300dp"
-        android:singleLine="true"
-        android:textColorHint="@color/colorAccent"
-        android:textSize="16sp"
-        android:paddingStart="10dp"/>
+            <EditText
+                android:id="@+id/cor"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/cor"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="200dp"
+                android:singleLine="true"
+                android:textColorHint="@color/colorAccent"
+                android:textSize="16sp"
+                android:paddingStart="10dp"/>
 
-    <Button
-        android:id="@+id/cadastro"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_gravity="center"
-        android:text="@string/cadastro"
-        android:textSize="14sp"
-        android:background="@color/colorAccent"
-        android:textColor="@color/colorTextWhite"
-        />
+            <EditText
+                android:id="@+id/modelo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/modelo"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="50dp"
+                android:singleLine="true"
+                android:textColorHint="@color/colorAccent"
+                android:textSize="16sp"
+                android:paddingStart="10dp"/>
+
+            <EditText
+                android:id="@+id/marca"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/marca"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="50dp"
+                android:singleLine="true"
+                android:textColorHint="@color/colorAccent"
+                android:textSize="16sp"
+                android:paddingStart="10dp"/>
+
+            <EditText
+                android:id="@+id/capacidade"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/capacidade"
+                android:layout_marginBottom="20dp"
+                android:layout_marginEnd="300dp"
+                android:singleLine="true"
+                android:textColorHint="@color/colorAccent"
+                android:textSize="16sp"
+                android:paddingStart="10dp"/>
+
+            <Button
+                android:id="@+id/cadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="70dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_gravity="center"
+                android:text="@string/cadastro"
+                android:textSize="14sp"
+                android:background="@color/colorAccent"
+                android:textColor="@color/colorTextWhite"
+                />
+
+        </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

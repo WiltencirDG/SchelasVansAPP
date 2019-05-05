@@ -71,7 +71,7 @@ public class CadastroVeiculo extends AppCompatActivity {
                                         Log.d(TAG, response);
                                         if (response.contains("true")) {
 
-                                            Intent intent = new Intent(CadastroVeiculo.this, ListPassageiro.class);
+                                            Intent intent = new Intent(CadastroVeiculo.this, ListVeiculo.class);
                                             CadastroVeiculo.this.startActivity(intent);
 
                                         } else {

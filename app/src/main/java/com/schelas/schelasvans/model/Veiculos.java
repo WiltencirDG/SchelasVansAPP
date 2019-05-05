@@ -9,6 +9,7 @@ public class Veiculos implements Serializable {
     private String modelo;
     private String marca;
     private Integer capacidade;
+    private String Desc;
 
 
     public Veiculos(Integer id, String placa, String cor, String modelo, String marca, Integer capacidade) {
@@ -18,6 +19,7 @@ public class Veiculos implements Serializable {
         setModelo(modelo);
         setMarca(marca);
         setCapacidade(capacidade);
+        this.Desc = "Veiculo";
     }
 
     public Integer getId() {
@@ -68,5 +70,5 @@ public class Veiculos implements Serializable {
         this.capacidade = capacidade;
     }
 
-    public String getDesc() { return "Veículo"; }
+    public String getDesc() { return this.Desc; }
 }

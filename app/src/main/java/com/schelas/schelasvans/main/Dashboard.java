@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.controller.ListDestino;
 import com.schelas.schelasvans.controller.ListPassageiro;
+import com.schelas.schelasvans.controller.ListVeiculo;
 import com.schelas.schelasvans.controller.Login;
 
 public class Dashboard extends AppCompatActivity
@@ -85,7 +86,8 @@ public class Dashboard extends AppCompatActivity
             Intent intent = new Intent(this, ListPassageiro.class);
             startActivity(intent);
         } else if (id == R.id.nav_veiculos) {
-
+            Intent intent = new Intent(this, ListVeiculo.class);
+            startActivity(intent);
         } else if (id == R.id.nav_dest) {
             Intent intent = new Intent(this, ListDestino.class);
             startActivity(intent);

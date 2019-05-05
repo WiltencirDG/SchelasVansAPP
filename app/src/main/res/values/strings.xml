@@ -83,4 +83,5 @@
     <string name="actDetailVeic">Veiculo</string>
     <string name="veiculoPlaceholderNome">Desc do Veiculoi</string>
     <string name="actVeic">Veiculo</string>
+    <string name="detVeic">Veiculo</string>
 </resources>

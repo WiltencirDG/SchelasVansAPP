@@ -88,15 +88,15 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/modelo"
-                        android:paddingBottom="20dp"
+                        android:paddingBottom="12dp"
                         android:textColor="@color/colorSecondaryText"/>
 
                     <TextView
-                        android:id="@+id/tv_capacidadeVeiculo"
+                        android:id="@+id/tv_capacidadeVeiculoD"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/capacidade"
-                        android:paddingBottom="20dp"
+                        android:paddingBottom="12dp"
                         android:textColor="@color/colorSecondaryText"/>
 
                 </LinearLayout>

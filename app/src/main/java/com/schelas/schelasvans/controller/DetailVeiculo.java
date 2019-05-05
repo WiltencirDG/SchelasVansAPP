@@ -1,20 +1,18 @@
 package com.schelas.schelasvans.controller;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.schelas.schelasvans.R;
-import com.schelas.schelasvans.model.Destinos;
-import com.schelas.schelasvans.model.Passageiros;
 import com.schelas.schelasvans.model.Veiculos;
 
 public class DetailVeiculo extends AppCompatActivity {
 
+    private static final String TAG = "SchelasVans";
     private TextView tvName;
     private TextView tvPlaca;
     private TextView tvModelo;
@@ -25,7 +23,7 @@ public class DetailVeiculo extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_destino);
+        setContentView(R.layout.activity_detail_veiculo);
 
         veiculo = (Veiculos) getIntent().getSerializableExtra("veiculo");
         setUI();
@@ -37,7 +35,7 @@ public class DetailVeiculo extends AppCompatActivity {
         tvName = (TextView) findViewById(R.id.tv_nomeVeiculo);
         tvPlaca = (TextView) findViewById(R.id.tv_placaVeiculo);
         tvModelo = (TextView) findViewById(R.id.tv_modeloVeiculo);
-        tvCapacidade = (TextView) findViewById(R.id.tv_capacidadeVeiculo);
+        tvCapacidade = (TextView) findViewById(R.id.tv_capacidadeVeiculoD);
     }
 
     private void setToolbar(){
@@ -56,7 +54,7 @@ public class DetailVeiculo extends AppCompatActivity {
         tvName.setText(veiculo.getDesc());
         tvPlaca.setText(veiculo.getPlaca());
         tvModelo.setText(veiculo.getModelo());
-        tvCapacidade.setText(veiculo.getCapacidade());
+        tvCapacidade.setText(veiculo.getCapacidade().toString());
     }
 
 }
