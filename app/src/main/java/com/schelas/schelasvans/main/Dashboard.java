@@ -93,6 +93,10 @@ public class Dashboard extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_logout) {
 
+        } else if (id == R.id.nav_passVeic) {
+
+        } else if (id == R.id.nav_veicRota) {
+
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);

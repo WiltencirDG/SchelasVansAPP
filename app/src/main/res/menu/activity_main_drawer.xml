@@ -36,6 +36,19 @@
         </menu>
     </item>
 
+    <item android:title="Atribuições">
+        <menu>
+            <item
+                android:id="@+id/nav_passVeic"
+                android:icon="@drawable/ic_passveic_24dp"
+                android:title="Passageiros" />
+            <item
+                android:id="@+id/nav_veicRota"
+                android:icon="@drawable/ic_veicrota_24dp"
+                android:title="Veiculos" />
+        </menu>
+    </item>
+
     <item android:title="">
         <menu>
             <item
