@@ -16,13 +16,13 @@
         android:background="@drawable/bg1">
 
         <ImageView
-            android:id="@+id/imgPass"
+            android:id="@+id/imgVei"
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_margin="5dp"
             android:layout_gravity="center"
             android:scaleType="centerCrop"
-            android:src="@drawable/ic_destinow"/>
+            android:src="@drawable/ic_veiculow"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -31,11 +31,11 @@
             android:padding="8dp">
 
             <TextView
-                android:id="@+id/namePass"
+                android:id="@+id/nameVei"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:text="Nome do destino"
+                android:text="Nome do veículo"
                 android:textColor="@color/colorTextWhite"
                 android:textSize="18sp"/>
 

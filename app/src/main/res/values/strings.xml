@@ -80,4 +80,7 @@
     <string name="destinoCidade">Cidade</string>
     <string name="destinoPlaceholderNome">Nome do Destino</string>
     <string name="detDest">Destino</string>
+    <string name="actDetailVeic">Veiculo</string>
+    <string name="veiculoPlaceholderNome">Desc do Veiculoi</string>
+    <string name="actVeic">Veiculo</string>
 </resources>

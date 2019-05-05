@@ -9,29 +9,29 @@
     tools:context="com.schelas.schelasvans.controller.CadastroPassageiro">
 
     <android.support.v7.widget.Toolbar
-    android:id="@+id/destool"
-    android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:background="@color/colorAccent">
-
-    <ImageView
-        android:id="@+id/imgNavBar"
-        android:contentDescription="@string/back_button"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        android:src="@drawable/ic_back_24dp"/>
-
-    <TextView
+        android:id="@+id/destool"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/actDetailPass"
-        android:textColor="@color/colorTextWhite"
-        android:textStyle="bold"
-        android:textSize="16sp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"/>
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorAccent">
 
-</android.support.v7.widget.Toolbar>
+        <ImageView
+            android:id="@+id/imgNavBar"
+            android:contentDescription="@string/back_button"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_back_24dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/actDetailVeic"
+            android:textColor="@color/colorTextWhite"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"/>
+
+    </android.support.v7.widget.Toolbar>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -48,8 +48,7 @@
                 android:layout_height="145dp"
                 android:layout_gravity="center"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_person_blue_24dp" />
-
+                android:src="@drawable/ic_veiculo_24dp" />
 
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
@@ -66,29 +65,29 @@
                     android:gravity="center">
 
                     <TextView
-                        android:id="@+id/tv_n_shop"
+                        android:id="@+id/tv_nomeVeiculo"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/passPlaceholderNome"
+                        android:text="@string/veiculoPlaceholderNome"
                         android:textSize="21sp"
                         android:textColor="@color/colorPrimaryText"
                         android:textStyle="bold"
                         android:paddingBottom="24dp"/>
 
                     <TextView
-                        android:id="@+id/tv_a_shop"
+                        android:id="@+id/tv_placaVeiculo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/passPlaceholderAddress"
+                        android:text="@string/placa"
                         android:paddingBottom="12dp"
                         android:textColor="@color/colorSecondaryText"/>
 
 
                     <TextView
-                        android:id="@+id/tv_p_shop"
+                        android:id="@+id/tv_modeloVeiculo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/passPlaceholderPhone"
+                        android:text="@string/modelo"
                         android:paddingBottom="20dp"
                         android:textColor="@color/colorSecondaryText"/>
 
