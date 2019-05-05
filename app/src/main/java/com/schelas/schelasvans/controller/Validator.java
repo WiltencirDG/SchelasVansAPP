@@ -116,4 +116,13 @@ public class Validator {
             return true;
         }
     }
+
+    boolean validatePlaca(String placa){
+
+        if(placa.isEmpty()){
+            return false;
+        }else{
+            return true;
+        }
+    }
 }

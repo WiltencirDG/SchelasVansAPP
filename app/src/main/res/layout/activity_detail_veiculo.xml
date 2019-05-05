@@ -91,16 +91,13 @@
                         android:paddingBottom="20dp"
                         android:textColor="@color/colorSecondaryText"/>
 
-                    <Button
-                        android:id="@+id/btn_map"
+                    <TextView
+                        android:id="@+id/tv_capacidadeVeiculo"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/detailPassVerMapa"
-                        android:paddingBottom="8dp"
-                        android:paddingTop="8dp"
-                        android:background="@color/colorAccent"
-                        android:textColor="@color/white" />
-
+                        android:text="@string/capacidade"
+                        android:paddingBottom="20dp"
+                        android:textColor="@color/colorSecondaryText"/>
 
                 </LinearLayout>
 

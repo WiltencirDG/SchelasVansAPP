@@ -16,37 +16,34 @@ import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.model.PassageiroRequest;
+import com.schelas.schelasvans.model.VeiculoRequest;
 
 public class CadastroVeiculo extends AppCompatActivity {
 
-    private EditText etnome;
-    private EditText etemail;
-    private EditText etphone;
-    private EditText etaddress;
-    private EditText etnumber;
-    private EditText etbairro;
-    private EditText etcidade;
+    private EditText etplaca;
+    private EditText etcor;
+    private EditText etmodelo;
+    private EditText etmarca;
+    private EditText etcapacidade;
     private Button btncadastrar;
     private ImageView ivToolbar;
     static final String TAG = "Schelas Vans";
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cadastro_passageiro);
+        setContentView(R.layout.activity_cadastro_veiculo);
         setUI();
         setToolbar();
         Act();
     }
 
     private void setUI(){
-        etnome = findViewById(R.id.etNome);
-        etemail= findViewById(R.id.etEmail);
-        etphone = findViewById(R.id.etPhone);
-        etaddress  = findViewById(R.id.etAddress);
-        etnumber  = findViewById(R.id.etAddressNum);
-        etbairro = findViewById(R.id.etAddressBairro);
-        etcidade= findViewById(R.id.etAddressCidade);
-        btncadastrar= findViewById(R.id.btnCadPass);
+        etplaca = findViewById(R.id.placa);
+        etcor = findViewById(R.id.cor);
+        etmodelo = findViewById(R.id.modelo);
+        etmarca  = findViewById(R.id.marca);
+        etcapacidade  = findViewById(R.id.capacidade);
+        btncadastrar= findViewById(R.id.cadastro);
         ivToolbar = findViewById(R.id.imgNavBar);
     }
 
@@ -56,89 +53,55 @@ public class CadastroVeiculo extends AppCompatActivity {
         btncadastrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final String nome = etnome.getText().toString();
-                final String email = etemail.getText().toString();
-                final String phone= etphone.getText().toString();
-                final String address= etaddress.getText().toString();
-                final String number = etnumber.getText().toString();
-                final String bairro = etbairro.getText().toString();
-                final String cidade = etcidade.getText().toString();
+                final String placa = etplaca.getText().toString();
+                final String cor = etcor.getText().toString();
+                final String modelo = etmodelo.getText().toString();
+                final String marca = etmarca.getText().toString();
+                final String capacidade = etcapacidade.getText().toString();
 
-                if(validator.validateEmail(email)){
+                if(validator.validatePlaca(placa)){
+                    if(validator.validateEmpty(marca)){
+                        if(validator.validateEmpty(capacidade)) {
+                            Response.Listener<String> responseListener = new Response.Listener<String>() {
 
-                    if(validator.validateNome(nome)){
+                                @Override
+                                public void onResponse(String response) {
 
-                        if(validator.validatePhone(phone)){
+                                    try {
+                                        Log.d(TAG, response);
+                                        if (response.contains("true")) {
 
-                            if(validator.validateAddress(address)){
+                                            Intent intent = new Intent(CadastroVeiculo.this, ListPassageiro.class);
+                                            CadastroVeiculo.this.startActivity(intent);
 
-                                if(validator.validateNumber(number)){
-
-                                    if(validator.validateBairro(bairro)){
-
-                                        if(validator.validateCidade(cidade)){
-
-                                            Response.Listener<String> responseListener = new Response.Listener<String>() {
-
-                                                @Override
-                                                public void onResponse(String response) {
-
-                                                    try {
-                                                        Log.d(TAG, response);
-                                                        if (response.contains("true")) {
-
-                                                            Intent intent = new Intent(CadastroVeiculo.this, ListPassageiro.class);
-                                                            CadastroVeiculo.this.startActivity(intent);
-
-                                                        } else {
-                                                            AlertDialog.Builder builder = new AlertDialog.Builder(CadastroVeiculo.this);
-                                                            builder.setMessage(R.string.cadastroFail)
-                                                                    .setNegativeButton(R.string.tryAgain, null)
-                                                                    .create()
-                                                                    .show();
-                                                        }
-
-
-                                                    } catch (Exception e) {
-                                                        e.printStackTrace();
-                                                    }
-
-
-                                                    }
-                                                };
-
-                                            PassageiroRequest passageiroRequest = new PassageiroRequest(nome, email, phone, address, number, bairro, cidade, responseListener);
-                                            RequestQueue queue = Volley.newRequestQueue(CadastroVeiculo.this);
-                                            queue.add(passageiroRequest);
-
-
-
-                                        }else{
-                                            etcidade.setError("Campo inválido");
+                                        } else {
+                                            AlertDialog.Builder builder = new AlertDialog.Builder(CadastroVeiculo.this);
+                                            builder.setMessage(R.string.cadastroFail)
+                                                    .setNegativeButton(R.string.tryAgain, null)
+                                                    .create()
+                                                    .show();
                                         }
 
-                                    }else{
-                                        etbairro.setError("Campo inválido");
+
+                                    } catch (Exception e) {
+                                        e.printStackTrace();
                                     }
 
-                                }else{
-                                    etnumber.setError("Campo inválido");
+
                                 }
+                            };
 
-                            }else{
-                                etaddress.setError("Campo inválido");
-                            }
-
+                            VeiculoRequest veiculoRequest = new VeiculoRequest(placa, cor, modelo, marca, capacidade, responseListener);
+                            RequestQueue queue = Volley.newRequestQueue(CadastroVeiculo.this);
+                            queue.add(veiculoRequest);
                         }else{
-                            etphone.setError("Campo inválido");
+                            etcapacidade.setError("Obrigatório informar a capacidade do veiculo");
                         }
-
                     }else{
-                        etnome.setError("Campo inválido");
+                        etmarca.setError("Informe a marca do veiculo");
                     }
-
                 }else{
-                    etemail.setError("Campo inválido");
+                    etplaca.setError("Placa vazia ou já cadastrada");
                 }
 
             }
