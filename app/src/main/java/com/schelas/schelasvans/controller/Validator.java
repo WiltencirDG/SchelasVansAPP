@@ -47,7 +47,6 @@ public class Validator {
         }
     }
 
-
     boolean validateLogin(String username, String password){
 
         if(username.isEmpty()){

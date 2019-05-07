@@ -112,7 +112,7 @@ public class Login extends AppCompatActivity {
             public void onResponse(String response) {
 
                 try {
-                    if (!response.equals("true")) {
+                    if (!response.contains("true")) {
                         AlertDialog.Builder builder = new AlertDialog.Builder(Login.this);
                         builder.setMessage(R.string.apiOffline)
                                 .setNegativeButton(R.string.tryAgain, null)

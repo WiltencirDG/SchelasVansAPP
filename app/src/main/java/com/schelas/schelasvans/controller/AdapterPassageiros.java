@@ -46,7 +46,6 @@ public class AdapterPassageiros extends RecyclerView.Adapter<AdapterPassageiros.
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        //holder_passageiros.ivImage.setImageResource(mData.get(position).getIdImage());
         holder.tvName.setText(mData.get(position).getName());
     }
 

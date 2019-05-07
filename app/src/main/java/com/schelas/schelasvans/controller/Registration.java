@@ -58,7 +58,7 @@ public class Registration extends AppCompatActivity {
                 final String password = etSenha.getText().toString();
                 final String confsenha = etConfSenha.getText().toString();
 
-                tvErrors.setVisibility(View.INVISIBLE);
+                tvErrors.setVisibility(View.GONE);
 
                 if (validator.validateDados(email, username, password, confsenha)) {
                     if (validator.validatePass(password, confsenha)) {
@@ -69,7 +69,7 @@ public class Registration extends AppCompatActivity {
                                 public void onResponse(String response) {
                                     try {
 
-                                        if (response.equals("true")) {
+                                        if (response.contains("true")) {
 
                                             Intent intent = new Intent(Registration.this, Login.class);
                                             Registration.this.startActivity(intent);
