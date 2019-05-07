@@ -84,4 +84,16 @@
     <string name="veiculoPlaceholderNome">Desc do Veiculoi</string>
     <string name="actVeic">Veiculo</string>
     <string name="detVeic">Veiculo</string>
+    <string name="menuPerfil">Perfil</string>
+    <string name="menuRota">Rotas</string>
+    <string name="menuRelatorio">Relatórios</string>
+    <string name="menuItemCadastros">Cadastros</string>
+    <string name="menuPassageiros">Passageiros</string>
+    <string name="menuVeiculos">Veiculos</string>
+    <string name="menuDestinos">Destinos</string>
+    <string name="menuItemDef">Definições</string>
+    <string name="menuAlocacao">Alocação</string>
+    <string name="menuItemOther" />
+    <string name="menuLogout">Logout</string>
+    <string name="menuAbout">Sobre</string>
 </resources>

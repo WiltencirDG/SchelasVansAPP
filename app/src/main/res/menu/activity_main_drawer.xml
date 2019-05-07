@@ -7,54 +7,56 @@
         <item
             android:id="@+id/nav_perfil"
             android:icon="@drawable/ic_perfil_24dp"
-            android:title="Perfil" />
+            android:title="@string/menuPerfil" />
         <item
             android:id="@+id/nav_rotas"
             android:icon="@drawable/ic_rotas_24dp"
-            android:title="Rotas" />
+            android:title="@string/menuRota" />
         <item
             android:id="@+id/nav_relatorios"
             android:icon="@drawable/ic_relatorio_24dp"
-            android:title="Relatórios" />
+            android:title="@string/menuRelatorio" />
 
     </group>
 
-    <item android:title="Cadastros">
+    <item android:title="@string/menuItemCadastros">
         <menu>
             <item
                 android:id="@+id/nav_passageiros"
                 android:icon="@drawable/ic_passageiros_24dp"
-                android:title="Passageiros" />
+                android:title="@string/menuPassageiros" />
             <item
                 android:id="@+id/nav_veiculos"
                 android:icon="@drawable/ic_vans_24dp"
-                android:title="Veiculos" />
+                android:title="@string/menuVeiculos" />
             <item
                 android:id="@+id/nav_dest"
                 android:icon="@drawable/ic_destinos_24dp"
-                android:title="Destinos" />
+                android:title="@string/menuDestinos" />
         </menu>
     </item>
 
-    <item android:title="Atribuições">
+    <item android:title="@string/menuItemDef">
         <menu>
             <item
                 android:id="@+id/nav_passVeic"
                 android:icon="@drawable/ic_passveic_24dp"
-                android:title="Passageiros" />
-            <item
-                android:id="@+id/nav_veicRota"
-                android:icon="@drawable/ic_veicrota_24dp"
-                android:title="Veiculos" />
+                android:title="@string/menuAlocacao" />
         </menu>
     </item>
 
-    <item android:title="">
+    <item android:title="@string/menuItemOther">
         <menu>
+            <item
+                android:id="@+id/nav_about"
+                android:icon="@drawable/ic_about_24dp"
+                android:title="@string/menuAbout" />
+
             <item
                 android:id="@+id/nav_logout"
                 android:icon="@drawable/ic_logout_24dp"
-                android:title="Logout" />
+                android:title="@string/menuLogout" />
+
         </menu>
     </item>
 
