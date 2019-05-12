@@ -76,9 +76,7 @@ public class Dashboard extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_perfil) {
-
-        } else if (id == R.id.nav_rotas) {
+        if (id == R.id.nav_rotas) {
 
         } else if (id == R.id.nav_relatorios) {
 
@@ -90,9 +88,6 @@ public class Dashboard extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_dest) {
             Intent intent = new Intent(this, ListDestino.class);
-            startActivity(intent);
-        } else if (id == R.id.nav_logout) {
-            Intent intent = new Intent(this, Login.class);
             startActivity(intent);
         } else if (id == R.id.nav_passVeic) {
             Intent intent = new Intent(this, Alocar.class);
