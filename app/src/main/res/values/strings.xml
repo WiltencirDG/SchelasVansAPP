@@ -98,4 +98,17 @@
     <string name="menuAbout">Sobre</string>
     <string name="navAlocar">Alocação</string>
     <string name="actAlocar">Alocação</string>
+    <string name="actHome">Home</string>
+    <string name="welcome">Bem-Vindo ao</string>
+    <string name="bSchelas">SchelasVans</string>
+    <string name="textHome">\tGerencie viagens, passageiros e vans de sua empresa de uma maneira mais eficaz e inteligente com o SchelasVans!</string>
+    <string name="actAbout">About</string>
+    <string name="sobre">Sobre</string>
+    <string name="sobre2">\tO SchelasVans é um gerenciador de frotas de vans. \n\tO Projeto está sendo desenvolvido para o TCC pela Universidade Tuiuti do Paraná</string>
+    <string name="sobreFunc">\tAlgumas das funcionalidades que o sistema oferece são: \n\n\t- Cadastro de passageiros, veículos e destinos; \n\n\t- Alocar passageiros e destinos para as vans; \n\n\t- Disponibilizar rotas das viagens; \n\n\t- Gerar relatórios.</string>
+    <string name="actRelatorio">Relatório</string>
+    <string name="actCadRel">Relatório</string>
+    <string name="navAbout">About</string>
+
+
 </resources>

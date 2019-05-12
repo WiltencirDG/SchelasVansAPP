@@ -12,11 +12,15 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.controller.About;
 import com.schelas.schelasvans.controller.Alocar;
 import com.schelas.schelasvans.controller.ListDestino;
 import com.schelas.schelasvans.controller.ListPassageiro;
+import com.schelas.schelasvans.controller.ListRelatorio;
 import com.schelas.schelasvans.controller.ListVeiculo;
 import com.schelas.schelasvans.controller.Login;
+
+import java.util.List;
 
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -25,7 +29,7 @@ public class Dashboard extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.dashboard);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.destool);
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -79,7 +83,8 @@ public class Dashboard extends AppCompatActivity
         if (id == R.id.nav_rotas) {
 
         } else if (id == R.id.nav_relatorios) {
-
+            Intent intent = new Intent(this, ListRelatorio.class);
+            startActivity(intent);
         } else if (id == R.id.nav_passageiros) {
             Intent intent = new Intent(this, ListPassageiro.class);
             startActivity(intent);
@@ -93,7 +98,8 @@ public class Dashboard extends AppCompatActivity
             Intent intent = new Intent(this, Alocar.class);
             startActivity(intent);
         } else if (id == R.id.nav_about){
-            
+            Intent intent = new Intent(this, About.class);
+            startActivity(intent);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
