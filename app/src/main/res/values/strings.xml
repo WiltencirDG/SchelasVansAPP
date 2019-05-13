@@ -3,7 +3,7 @@
     <string name="navigation_drawer_open">Abrir drawer</string>
     <string name="navigation_drawer_close">Fechar drawer</string>
     <string name="nav_header_title">SchelasVans</string>
-    <string name="nav_header_subtitle">schelasvans@schelas.com</string>
+    <string name="nav_header_subtitle">schelasinc@gmail.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_about">Sobre</string>
 
@@ -109,6 +109,7 @@
     <string name="actRelatorio">Relatório</string>
     <string name="actCadRel">Relatório</string>
     <string name="navAbout">About</string>
+    <string name="actSobre">Sobre</string>
 
 
 </resources>

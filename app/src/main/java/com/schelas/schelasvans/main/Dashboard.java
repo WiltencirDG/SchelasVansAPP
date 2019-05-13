@@ -18,9 +18,6 @@ import com.schelas.schelasvans.controller.ListDestino;
 import com.schelas.schelasvans.controller.ListPassageiro;
 import com.schelas.schelasvans.controller.ListRelatorio;
 import com.schelas.schelasvans.controller.ListVeiculo;
-import com.schelas.schelasvans.controller.Login;
-
-import java.util.List;
 
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -68,7 +65,8 @@ public class Dashboard extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_about) {
-            return true;
+            Intent intent = new Intent(this, About.class);
+            startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);

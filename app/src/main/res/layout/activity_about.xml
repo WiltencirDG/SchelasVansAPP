@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/actAbout"
+            android:text="@string/actSobre"
             android:textColor="@color/colorTextWhite"
             android:textStyle="bold"
             android:textSize="16sp"
