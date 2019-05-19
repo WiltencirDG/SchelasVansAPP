@@ -110,6 +110,7 @@
     <string name="actCadRel">Relatório</string>
     <string name="navAbout">About</string>
     <string name="actSobre">Sobre</string>
+    <string name="actAloc">Alocar</string>
 
 
 </resources>
