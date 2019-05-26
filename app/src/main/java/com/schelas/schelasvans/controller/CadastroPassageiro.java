@@ -11,14 +11,26 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.model.PassageiroRequest;
+import com.schelas.schelasvans.model.Passageiros;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CadastroPassageiro extends AppCompatActivity {
 
+    private String ID;
     private EditText etnome;
     private EditText etemail;
     private EditText etphone;
@@ -28,7 +40,12 @@ public class CadastroPassageiro extends AppCompatActivity {
     private EditText etcidade;
     private Button btncadastrar;
     private ImageView ivToolbar;
+    private String link;
+
+    private String type;
+    private String passId = "";
     static final String TAG = "Schelas Vans";
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,21 +53,32 @@ public class CadastroPassageiro extends AppCompatActivity {
         setUI();
         setToolbar();
         Act();
+
+        type = getIntent().getStringExtra("type");
+        link = "post";
+
+        if (type.contains("edit")) {
+            passId = getIntent().getStringExtra("id");
+            doLoad();
+            btncadastrar.setText(R.string.btnAtt);
+            link = "put";
+        }
+
     }
 
-    private void setUI(){
+    private void setUI() {
         etnome = findViewById(R.id.etNome);
-        etemail= findViewById(R.id.etEmail);
+        etemail = findViewById(R.id.etEmail);
         etphone = findViewById(R.id.etPhone);
-        etaddress  = findViewById(R.id.etAddress);
-        etnumber  = findViewById(R.id.etAddressNum);
+        etaddress = findViewById(R.id.etAddress);
+        etnumber = findViewById(R.id.etAddressNum);
         etbairro = findViewById(R.id.etAddressBairro);
-        etcidade= findViewById(R.id.etAddressCidade);
-        btncadastrar= findViewById(R.id.btnCadPass);
+        etcidade = findViewById(R.id.etAddressCidade);
+        btncadastrar = findViewById(R.id.btnCadPass);
         ivToolbar = findViewById(R.id.imgNavBar);
     }
 
-    private void Act(){
+    private void Act() {
         final Validator validator = new Validator();
 
         btncadastrar.setOnClickListener(new View.OnClickListener() {
@@ -58,26 +86,26 @@ public class CadastroPassageiro extends AppCompatActivity {
             public void onClick(View v) {
                 final String nome = etnome.getText().toString();
                 final String email = etemail.getText().toString();
-                final String phone= etphone.getText().toString();
-                final String address= etaddress.getText().toString();
+                final String phone = etphone.getText().toString();
+                final String address = etaddress.getText().toString();
                 final String number = etnumber.getText().toString();
                 final String bairro = etbairro.getText().toString();
                 final String cidade = etcidade.getText().toString();
 
-                if(validator.validateEmail(email)){
+                if (validator.validateEmail(email)) {
 
-                    if(validator.validateNome(nome)){
+                    if (validator.validateNome(nome)) {
 
-                        if(validator.validatePhone(phone)){
+                        if (validator.validatePhone(phone)) {
 
-                            if(validator.validateAddress(address)){
+                            if (validator.validateAddress(address)) {
 
-                                if(validator.validateNumber(number)){
+                                if (validator.validateNumber(number)) {
 
-                                    if(validator.validateBairro(bairro)){
+                                    if (validator.validateBairro(bairro)) {
 
-                                        if(validator.validateCidade(cidade)){
-
+                                       if (validator.validateCidade(cidade)) {
+                                           Log.d(TAG, "onClick: GOT HERE");
                                             Response.Listener<String> responseListener = new Response.Listener<String>() {
 
                                                 @Override
@@ -104,40 +132,39 @@ public class CadastroPassageiro extends AppCompatActivity {
                                                     }
 
 
-                                                    }
-                                                };
+                                                }
+                                            };
 
-                                            PassageiroRequest passageiroRequest = new PassageiroRequest(nome, email, phone, address, number, bairro, cidade, responseListener);
+                                            PassageiroRequest passageiroRequest = new PassageiroRequest(passId, nome, email, phone, address, number, bairro, cidade, link, responseListener);
                                             RequestQueue queue = Volley.newRequestQueue(CadastroPassageiro.this);
                                             queue.add(passageiroRequest);
 
 
-
-                                        }else{
+                                        } else {
                                             etcidade.setError("Campo inválido");
                                         }
 
-                                    }else{
+                                    } else {
                                         etbairro.setError("Campo inválido");
                                     }
 
-                                }else{
+                                } else {
                                     etnumber.setError("Campo inválido");
                                 }
 
-                            }else{
+                            } else {
                                 etaddress.setError("Campo inválido");
                             }
 
-                        }else{
+                        } else {
                             etphone.setError("Campo inválido");
                         }
 
-                    }else{
+                    } else {
                         etnome.setError("Campo inválido");
                     }
 
-                }else{
+                } else {
                     etemail.setError("Campo inválido");
                 }
 
@@ -145,7 +172,7 @@ public class CadastroPassageiro extends AppCompatActivity {
         });
     }
 
-    private void setToolbar(){
+    private void setToolbar() {
         ivToolbar = findViewById(R.id.imgNavBar);
         ivToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,6 +180,48 @@ public class CadastroPassageiro extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+    }
+
+    private void doLoad() {
+        final List<Passageiros> passes = new ArrayList<>();
+        final String URL_FETCH = "https://schelasvansapi.000webhostapp.com/api/get/Passageiro.php?id=" + passId;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_FETCH, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jobj = new JSONArray(response);
+
+                    for (int i = 0; i < jobj.length(); i++) {
+                        JSONObject ob = jobj.getJSONObject(i);
+                        Passageiros p = new Passageiros(ob.getString("PassageiroNome"), ob.getString("PassageiroId"), ob.getString("PassageiroLogradouro"), ob.getString("PassageiroNum"), ob.getString("PassageiroFone"), ob.getString("PassageiroEmail"), ob.getString("PassageiroBairro"), ob.getString("PassageiroCidade"));
+                        passes.add(p);
+
+                        etnome.setText(p.getName());
+                        etemail.setText(p.getEmail());
+                        etphone.setText(p.getPhone());
+                        etaddress.setText(p.getAddress());
+                        etnumber.setText(p.getAddressNumber());
+                        etbairro.setText(p.getBairro());
+                        etcidade.setText(p.getCidade());
+
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(CadastroPassageiro.this);
+        requestQueue.add(stringRequest);
 
     }
 

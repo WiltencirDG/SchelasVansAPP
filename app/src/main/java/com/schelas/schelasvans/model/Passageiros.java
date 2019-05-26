@@ -9,13 +9,23 @@ public class Passageiros implements Serializable {
     private String Address;
     private String AddressNumber;
     private String Phone;
+    private String email;
+    private String bairro;
+    private String cidade;
 
-    public Passageiros(String name, String idPass, String Address, String AddressNumber, String Phone ){
+    public Passageiros(){
+
+    }
+
+    public Passageiros(String name, String idPass, String Address, String AddressNumber, String Phone, String email, String bairro, String cidade ){
         setName(name);
         setIdPass(idPass);
         setPhone(Phone);
         setAddress(Address);
         setAddressNumber(AddressNumber);
+        setEmail(email);
+        setBairro(bairro);
+        setCidade(cidade);
     }
 
     public String getName() {
@@ -56,5 +66,29 @@ public class Passageiros implements Serializable {
 
     public String getAddressNumber() {
         return AddressNumber;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getBairro() {
+        return bairro;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
+    }
+
+    public String getCidade() {
+        return cidade;
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
     }
 }

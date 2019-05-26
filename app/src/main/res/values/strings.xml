@@ -111,6 +111,8 @@
     <string name="navAbout">About</string>
     <string name="actSobre">Sobre</string>
     <string name="actAloc">Alocar</string>
+    <string name="btnAtt">Atualizar</string>
+    <string name="nonePass"><![CDATA[<Nenhum passageiro cadastrado>]]></string>
 
 
 </resources>

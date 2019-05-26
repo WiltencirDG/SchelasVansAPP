@@ -40,6 +40,16 @@
         android:layout_above="@id/fabPass"
         />
 
+    <TextView
+        android:id="@+id/emptyList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/nonePass"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@id/destool"
+        android:visibility="gone"
+        />
+
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fabPass"
         android:layout_width="wrap_content"

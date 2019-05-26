@@ -4,13 +4,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 import com.android.volley.Request;
@@ -20,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.model.PassageiroRequest;
 import com.schelas.schelasvans.model.Passageiros;
 
 import org.json.JSONArray;
@@ -38,6 +43,8 @@ public class ListPassageiro extends AppCompatActivity {
     private List<Passageiros> passageiros;
     private AdapterPassageiros mAdapterPassageiros;
     private FloatingActionButton fab;
+    private TextView tvEmpty;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +61,7 @@ public class ListPassageiro extends AppCompatActivity {
         toolbar = findViewById(R.id.destool);
         rvPassageiros = findViewById(R.id.rv_passageiros);
         fab = (FloatingActionButton) findViewById(R.id.fabPass);
+        tvEmpty = findViewById(R.id.emptyList);
     }
 
     private void setFab(){
@@ -62,6 +70,7 @@ public class ListPassageiro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent register = new Intent(ListPassageiro.this, CadastroPassageiro.class);
+                register.putExtra("type","ins");
                 startActivity(register);
             }
         });
@@ -108,11 +117,13 @@ public class ListPassageiro extends AppCompatActivity {
 
                     for (int i = 0; i < jobj.length(); i++) {
                         JSONObject ob = jobj.getJSONObject(i);
-                        Passageiros pass = new Passageiros(ob.getString("PassageiroNome"), ob.getString("PassageiroId"),ob.getString("PassageiroLogradouro"),ob.getString("PassageiroNum"),ob.getString("PassageiroFone"));
+                        Passageiros pass = new Passageiros(ob.getString("PassageiroNome"), ob.getString("PassageiroId"), ob.getString("PassageiroLogradouro"), ob.getString("PassageiroNum"), ob.getString("PassageiroFone"), ob.getString("PassageiroEmail"), ob.getString("PassageiroBairro"), ob.getString("PassageiroCidade"));
                         passes.add(pass);
 
                     }
-
+                    if(passes.size() == 0){
+                        tvEmpty.setVisibility(View.VISIBLE);
+                    }
                     mAdapterPassageiros.notifyDataSetChanged();
 
                 } catch (JSONException e) {
