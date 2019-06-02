@@ -13,7 +13,7 @@ import android.view.MenuItem;
 
 import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.controller.About;
-import com.schelas.schelasvans.controller.Alocar;
+import com.schelas.schelasvans.controller.AlocaPass;
 import com.schelas.schelasvans.controller.ListDestino;
 import com.schelas.schelasvans.controller.ListPassageiro;
 import com.schelas.schelasvans.controller.ListRelatorio;
@@ -93,7 +93,10 @@ public class Dashboard extends AppCompatActivity
             Intent intent = new Intent(this, ListDestino.class);
             startActivity(intent);
         } else if (id == R.id.nav_passVeic) {
-            Intent intent = new Intent(this, Alocar.class);
+            Intent intent = new Intent(this, AlocaPass.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_veicDest) {
+            Intent intent = new Intent(this, AlocaVeic.class);
             startActivity(intent);
         } else if (id == R.id.nav_about){
             Intent intent = new Intent(this, About.class);

@@ -11,15 +11,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.model.DestinoRequest;
+import com.schelas.schelasvans.model.Destinos;
 import com.schelas.schelasvans.model.PassageiroRequest;
+import com.schelas.schelasvans.model.Passageiros;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CadastroDestino extends AppCompatActivity {
 
+    private String ID;
     private EditText etDesc;
     private EditText etRua;
     private EditText etNum;
@@ -27,6 +40,10 @@ public class CadastroDestino extends AppCompatActivity {
     private EditText etCidade;
     private Button btncadastrar;
     private ImageView ivToolbar;
+
+    private String link;
+    private String type;
+    private String destId = "";
     static final String TAG = "Schelas Vans";
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +52,17 @@ public class CadastroDestino extends AppCompatActivity {
         setUI();
         setToolbar();
         Act();
+
+        type = getIntent().getStringExtra("type");
+        link = "post";
+
+        if (type.contains("edit")) {
+            destId = getIntent().getStringExtra("id");
+            doLoad();
+            btncadastrar.setText(R.string.btnAtt);
+            link = "put";
+        }
+
     }
 
     private void setUI(){
@@ -92,7 +120,7 @@ public class CadastroDestino extends AppCompatActivity {
                                 }
                             };
 
-                            DestinoRequest destinoRequest = new DestinoRequest(desc,rua, number, bairro, cidade, responseListener);
+                            DestinoRequest destinoRequest = new DestinoRequest(destId,desc,rua, number, bairro, cidade, responseListener);
                             RequestQueue queue = Volley.newRequestQueue(CadastroDestino.this);
                             queue.add(destinoRequest);
                         } else {
@@ -118,5 +146,45 @@ public class CadastroDestino extends AppCompatActivity {
         });
 
     }
+
+    private void doLoad() {
+        final List<Destinos> dests = new ArrayList<>();
+        final String URL_FETCH = "https://schelasvansapi.000webhostapp.com/api/get/Destino.php?id=" + destId;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_FETCH, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jobj = new JSONArray(response);
+
+                    for (int i = 0; i < jobj.length(); i++) {
+                        JSONObject ob = jobj.getJSONObject(i);
+                        Destinos dest = new Destinos(ob.getInt("DestinoId"),ob.getString("DestinoDesc"),ob.getString("DestinoLogradouro"),ob.getString("DestinoNum"),ob.getString("DestinoBairro"),ob.getString("DestinoCidade"));
+                        dests.add(dest);
+
+                        etDesc.setText(dest.getDescricao());
+                        etRua.setText(dest.getRua());
+                        etNum.setText(dest.getNum());
+                        etBairro.setText(dest.getBairro());
+                        etCidade .setText(dest.getCidade());
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(CadastroDestino.this);
+        requestQueue.add(stringRequest);
+
+    }
+
 
 }

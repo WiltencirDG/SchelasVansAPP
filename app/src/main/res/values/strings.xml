@@ -91,8 +91,8 @@
     <string name="menuPassageiros">Passageiros</string>
     <string name="menuVeiculos">Veiculos</string>
     <string name="menuDestinos">Destinos</string>
-    <string name="menuItemDef">Definições</string>
-    <string name="menuAlocacao">Alocação</string>
+    <string name="menuItemDef">Configurações</string>
+    <string name="menuAlocacao">Passageiros</string>
     <string name="menuItemOther"></string>
     <string name="menuLogout">Logout</string>
     <string name="menuAbout">Sobre</string>
@@ -113,6 +113,14 @@
     <string name="actAloc">Alocar</string>
     <string name="btnAtt">Atualizar</string>
     <string name="nonePass"><![CDATA[<Nenhum passageiro cadastrado>]]></string>
+    <string name="noneDest"><![CDATA[<Nenhum destino cadastrado>]]></string>
+    <string name="noneVeic"><![CDATA[<Nenhum veiculo cadastrado>]]></string>
+    <string name="actAlocPV">Alocar Passageiros no Veiculo</string>
+    <string name="actRota">Rota</string>
+    <string name="actAlocRD">Alocar Rota</string>
+    <string name="actAlocVR">Alocar Veiculo na Rota</string>
+    <string name="menuAlocaPass">Passageiros</string>
+    <string name="menuAlocaVeic">Veiculos</string>
 
 
 </resources>

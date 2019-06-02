@@ -11,12 +11,24 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.model.PassageiroRequest;
+import com.schelas.schelasvans.model.Passageiros;
 import com.schelas.schelasvans.model.VeiculoRequest;
+import com.schelas.schelasvans.model.Veiculos;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class CadastroVeiculo extends AppCompatActivity {
 
@@ -27,6 +39,11 @@ public class CadastroVeiculo extends AppCompatActivity {
     private EditText etcapacidade;
     private Button btncadastrar;
     private ImageView ivToolbar;
+    private String link;
+
+    private String type;
+    private String veicId = "";
+
     static final String TAG = "Schelas Vans";
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -35,6 +52,17 @@ public class CadastroVeiculo extends AppCompatActivity {
         setUI();
         setToolbar();
         Act();
+
+        type = getIntent().getStringExtra("type");
+        link = "post";
+
+        if (type.contains("edit")) {
+            veicId = getIntent().getStringExtra("id");
+            doLoad();
+            btncadastrar.setText(R.string.btnAtt);
+            link = "put";
+        }
+
     }
 
     private void setUI(){
@@ -91,7 +119,7 @@ public class CadastroVeiculo extends AppCompatActivity {
                                 }
                             };
 
-                            VeiculoRequest veiculoRequest = new VeiculoRequest(placa, cor, modelo, marca, capacidade, responseListener);
+                            VeiculoRequest veiculoRequest = new VeiculoRequest(veicId, placa, cor, modelo, marca, capacidade, link, responseListener);
                             RequestQueue queue = Volley.newRequestQueue(CadastroVeiculo.this);
                             queue.add(veiculoRequest);
                         }else{
@@ -116,6 +144,45 @@ public class CadastroVeiculo extends AppCompatActivity {
                 onBackPressed();
             }
         });
+
+    }
+
+    private void doLoad() {
+        final List<Veiculos> veics = new ArrayList<>();
+        final String URL_FETCH = "https://schelasvansapi.000webhostapp.com/api/get/Veiculo.php?id=" + veicId;
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_FETCH, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jobj = new JSONArray(response);
+
+                    for (int i = 0; i < jobj.length(); i++) {
+                        JSONObject ob = jobj.getJSONObject(i);
+                        Veiculos veic = new Veiculos(ob.getInt("VeiculoId"),ob.getString("VeiculoPlaca"),ob.getString("VeiculoCor"),ob.getString("VeiculoModelo"),ob.getString("VeiculoMarca"),ob.getInt("VeiculoCapacidade"));
+                        veics.add(veic);
+
+                        etplaca.setText(veic.getPlaca());
+                        etcor.setText(veic.getCor());
+                        etmodelo.setText(veic.getModelo());
+                        etmarca.setText(veic.getMarca());
+                        etcapacidade.setText(veic.getCapacidade());
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(CadastroVeiculo.this);
+        requestQueue.add(stringRequest);
 
     }
 

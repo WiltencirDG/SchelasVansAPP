@@ -12,6 +12,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -38,6 +39,7 @@ public class ListVeiculo extends AppCompatActivity {
     private List<Veiculos> veiculos;
     private AdapterVeiculos mAdapter;
     private FloatingActionButton fab;
+    private TextView tvEmpty;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class ListVeiculo extends AppCompatActivity {
         toolbar = findViewById(R.id.destool);
         rvVeiculos = findViewById(R.id.rv_veiculos);
         fab = findViewById(R.id.fabPass);
+        tvEmpty = findViewById(R.id.emptyList);
     }
 
     private void setFab(){
@@ -62,6 +65,7 @@ public class ListVeiculo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent register = new Intent(ListVeiculo.this, CadastroVeiculo.class);
+                register.putExtra("type","ins");
                 startActivity(register);
             }
         });
@@ -112,7 +116,9 @@ public class ListVeiculo extends AppCompatActivity {
                         veics.add(veic);
 
                     }
-
+                    if(veics.size() == 0){
+                        tvEmpty.setVisibility(View.VISIBLE);
+                    }
                     mAdapter.notifyDataSetChanged();
 
                 } catch (JSONException e) {

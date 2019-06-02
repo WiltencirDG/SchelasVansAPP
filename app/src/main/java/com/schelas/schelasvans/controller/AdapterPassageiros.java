@@ -30,6 +30,7 @@ public class AdapterPassageiros extends RecyclerView.Adapter<AdapterPassageiros.
     private ImageView edit;
     private ImageView delete;
     static Context context;
+
     public AdapterPassageiros(List<Passageiros> myData) {
         mData = myData;
     }

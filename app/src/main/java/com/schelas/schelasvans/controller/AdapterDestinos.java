@@ -1,5 +1,8 @@
 package com.schelas.schelasvans.controller;
 
+import android.content.Context;
+import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,8 +10,13 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.model.DestinoRequest;
 import com.schelas.schelasvans.model.Destinos;
+import com.schelas.schelasvans.model.PassageiroRequest;
 
 import java.util.List;
 
@@ -18,6 +26,9 @@ public class AdapterDestinos extends RecyclerView.Adapter<AdapterDestinos.ViewHo
 
     private List<Destinos> mData;
     private View.OnClickListener listener;
+    private ImageView edit;
+    private ImageView delete;
+    static Context context;
 
     public AdapterDestinos(List<Destinos> myData) {
         mData = myData;
@@ -32,6 +43,7 @@ public class AdapterDestinos extends RecyclerView.Adapter<AdapterDestinos.ViewHo
             super(v);
             ivImage = v.findViewById(R.id.imgPass);
             tvName = v.findViewById(R.id.namePass);
+            context = v.getContext();
         }
     }
 
@@ -39,13 +51,68 @@ public class AdapterDestinos extends RecyclerView.Adapter<AdapterDestinos.ViewHo
     public AdapterDestinos.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.holder_destinos, parent, false);
+
+        edit = view.findViewById(R.id.btnEdit);
+        delete = view.findViewById(R.id.btnDel);
+
         view.setOnClickListener(this);
         return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.tvName.setText(mData.get(position).getDescricao());
+
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent register = new Intent(context, CadastroDestino.class);
+                register.putExtra("id",mData.get(position).getId());
+                register.putExtra("type","edit");
+                context.startActivity(register);
+
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            if (response.contains("true")) {
+
+                                Intent intent = new Intent(context, ListDestino.class);
+                                context.startActivity(intent);
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(context);
+                                builder.setMessage(R.string.cadastroFail)
+                                        .setNegativeButton(R.string.tryAgain, null)
+                                        .create()
+                                        .show();
+                            }
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                };
+
+                DestinoRequest destinoRequest = new DestinoRequest(String.valueOf(mData.get(position).getId()),"del",responseListener);
+                RequestQueue queue = Volley.newRequestQueue(context);
+                queue.add(destinoRequest);
+
+
+            }
+        });
+
     }
 
     @Override

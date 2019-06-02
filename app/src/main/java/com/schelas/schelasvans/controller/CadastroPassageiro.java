@@ -105,7 +105,6 @@ public class CadastroPassageiro extends AppCompatActivity {
                                     if (validator.validateBairro(bairro)) {
 
                                        if (validator.validateCidade(cidade)) {
-                                           Log.d(TAG, "onClick: GOT HERE");
                                             Response.Listener<String> responseListener = new Response.Listener<String>() {
 
                                                 @Override
