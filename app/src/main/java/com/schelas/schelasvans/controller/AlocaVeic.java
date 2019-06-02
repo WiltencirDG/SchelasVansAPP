@@ -11,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Spinner;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,10 +35,11 @@ public class AlocaVeic extends AppCompatActivity {
 
     private Button btnAlocar;
     private ImageView ivToolbar;
-    private ListView spVeic;
-    private ListView spPass;
-    private List<String> passes;
+    private Spinner spVeic;
+    private ListView spDest;
     private List<String> veics;
+    private List<String> dests;
+
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -50,9 +52,9 @@ public class AlocaVeic extends AppCompatActivity {
     }
 
     private void setUI(){
-        spVeic = findViewById(R.id.spinner2);
-        spPass = findViewById(R.id.spinner1);
-        btnAlocar = findViewById(R.id.alocarPass);
+        spVeic = findViewById(R.id.spinner1);
+        spDest = findViewById(R.id.spinner3);
+        btnAlocar = findViewById(R.id.alocarVei);
     }
 
     private void setToolbar(){
@@ -68,22 +70,22 @@ public class AlocaVeic extends AppCompatActivity {
     }
 
     private void setData(){
-        passes = getPasses();
+        dests = getDests();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, passes);
-        spPass.setAdapter(adapter);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, dests);
+        spDest.setAdapter(adapter);
 
         veics = getVeics();
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, veics);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, veics);
         spVeic.setAdapter(adapter2);
 
     }
 
-    private List<String> getPasses(){
-        final List<String> listPass = new ArrayList<>();
+    private List<String> getDests(){
+        final List<String> listDest = new ArrayList<>();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://schelasvansapi.000webhostapp.com/api/getDisp/Passageiro.php" , new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://schelasvansapi.000webhostapp.com/api/get/Destino.php" , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -91,10 +93,10 @@ public class AlocaVeic extends AppCompatActivity {
 
                     for (int i = 0; i < jobj.length(); i++) {
                         JSONObject ob = jobj.getJSONObject(i);
-                        listPass.add(ob.getString("PassageiroEmail"));
+                        listDest.add(ob.getString("DestinoDesc"));
                     }
 
-                    ((BaseAdapter) spPass.getAdapter()).notifyDataSetChanged();
+                    ((BaseAdapter) spDest.getAdapter()).notifyDataSetChanged();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -110,7 +112,7 @@ public class AlocaVeic extends AppCompatActivity {
         RequestQueue requestQueue= Volley.newRequestQueue(AlocaVeic.this);
         requestQueue.add(stringRequest);
 
-        return listPass;
+        return listDest;
     }
 
 
@@ -154,22 +156,15 @@ public class AlocaVeic extends AppCompatActivity {
                 List<String> listPass = new ArrayList<>();
                 String veic = "";
 
-                SparseBooleanArray checked = spPass.getCheckedItemPositions();
+                SparseBooleanArray checked = spDest.getCheckedItemPositions();
 
-                for (int i = 0; i < spPass.getAdapter().getCount(); i++) {
+                for (int i = 0; i < spDest.getAdapter().getCount(); i++) {
                     if (checked.get(i)) {
-                        listPass.add('"'+spPass.getAdapter().getItem(i).toString()+'"');
+                        listPass.add('"'+spDest.getAdapter().getItem(i).toString()+'"');
                     }
                 }
 
-                checked = spVeic.getCheckedItemPositions();
-
-                for (int i = 0; i < spVeic.getAdapter().getCount(); i++) {
-                    if (checked.get(i)) {
-                        veic = '"'+spVeic.getAdapter().getItem(i).toString().substring(0,spVeic.getAdapter().getItem(i).toString().indexOf(" "))+'"';
-
-                    }
-                }
+                veic = spVeic.getSelectedItem().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
 

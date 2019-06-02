@@ -40,7 +40,7 @@ public class AlocaPass extends AppCompatActivity {
 
     private Button btnAlocar;
     private ImageView ivToolbar;
-    private ListView spVeic;
+    private Spinner spVeic;
     private ListView spPass;
     private List<String> passes;
     private List<String> veics;
@@ -81,7 +81,7 @@ public class AlocaPass extends AppCompatActivity {
 
         veics = getVeics();
 
-        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, veics);
+        ArrayAdapter<String> adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, veics);
         spVeic.setAdapter(adapter2);
 
     }
@@ -168,14 +168,7 @@ public class AlocaPass extends AppCompatActivity {
                     }
                 }
 
-                checked = spVeic.getCheckedItemPositions();
-
-                for (int i = 0; i < spVeic.getAdapter().getCount(); i++) {
-                    if (checked.get(i)) {
-                        veic = '"'+spVeic.getAdapter().getItem(i).toString().substring(0,spVeic.getAdapter().getItem(i).toString().indexOf(" "))+'"';
-
-                    }
-                }
+                veic = spVeic.getSelectedItem().toString();
 
                 Response.Listener<String> responseListener = new Response.Listener<String>() {
 

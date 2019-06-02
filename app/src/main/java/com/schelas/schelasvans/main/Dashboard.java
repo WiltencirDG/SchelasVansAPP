@@ -14,6 +14,7 @@ import android.view.MenuItem;
 import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.controller.About;
 import com.schelas.schelasvans.controller.AlocaPass;
+import com.schelas.schelasvans.controller.AlocaVeic;
 import com.schelas.schelasvans.controller.ListDestino;
 import com.schelas.schelasvans.controller.ListPassageiro;
 import com.schelas.schelasvans.controller.ListRelatorio;

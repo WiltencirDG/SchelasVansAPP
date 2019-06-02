@@ -42,6 +42,36 @@
             android:orientation="vertical">
 
             <TextView
+                android:id="@+id/veiculo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/veiculo"
+                android:textColor="@color/colorAccent"
+                android:textSize="18sp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_veiculo_24dp"
+                android:layout_marginBottom="20dp"/>
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:layout_margin="15dp"
+                android:nestedScrollingEnabled="true"
+                android:background="@android:drawable/btn_dropdown"
+                >
+
+
+            </Spinner>
+
+            <TextView
                 android:id="@+id/passageiro"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,35 +97,6 @@
                 android:nestedScrollingEnabled="true">
 
             </ListView>
-
-
-            <TextView
-                android:id="@+id/veiculo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/veiculo"
-                android:textColor="@color/colorAccent"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_veiculo_24dp"
-                android:layout_marginBottom="20dp"/>
-
-            <ListView
-                android:id="@+id/spinner2"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_margin="15dp"
-                android:choiceMode="singleChoice"
-                android:nestedScrollingEnabled="true">
-
-            </ListView>
-
 
             <Button
                 android:id="@+id/alocarPass"

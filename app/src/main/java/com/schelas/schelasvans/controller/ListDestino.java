@@ -63,6 +63,7 @@ public class ListDestino extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent register = new Intent(ListDestino.this, CadastroDestino.class);
+                register.putExtra("type","ins");
                 startActivity(register);
             }
         });

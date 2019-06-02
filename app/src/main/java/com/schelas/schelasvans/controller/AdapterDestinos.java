@@ -41,8 +41,8 @@ public class AdapterDestinos extends RecyclerView.Adapter<AdapterDestinos.ViewHo
 
         public ViewHolder(View v) {
             super(v);
-            ivImage = v.findViewById(R.id.imgPass);
-            tvName = v.findViewById(R.id.namePass);
+            ivImage = v.findViewById(R.id.imgDest);
+            tvName = v.findViewById(R.id.nameDest);
             context = v.getContext();
         }
     }
@@ -105,7 +105,7 @@ public class AdapterDestinos extends RecyclerView.Adapter<AdapterDestinos.ViewHo
                     }
                 };
 
-                DestinoRequest destinoRequest = new DestinoRequest(String.valueOf(mData.get(position).getId()),"del",responseListener);
+                DestinoRequest destinoRequest = new DestinoRequest(mData.get(position).getId().toString(),"del",responseListener);
                 RequestQueue queue = Volley.newRequestQueue(context);
                 queue.add(destinoRequest);
 
