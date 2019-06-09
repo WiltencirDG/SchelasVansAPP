@@ -131,7 +131,7 @@ public class AlocaPass extends AppCompatActivity {
 
                     for (int i = 0; i < jobj.length(); i++) {
                         JSONObject ob = jobj.getJSONObject(i);
-                        listVeic.add(ob.getString("VeiculoPlaca")+" - "+ob.getString("VeiculoCapacidade")+ " lugares restam");
+                        listVeic.add(ob.getString("VeiculoPlaca")+" - Restam "+ob.getString("VeiculoCapacidade")+ " lugares.");
                     }
                     ((BaseAdapter) spVeic.getAdapter()).notifyDataSetChanged();
                 } catch (JSONException e) {

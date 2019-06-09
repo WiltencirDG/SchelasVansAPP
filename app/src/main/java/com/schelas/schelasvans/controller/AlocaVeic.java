@@ -22,6 +22,7 @@ import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.main.Dashboard;
 import com.schelas.schelasvans.model.AlocaPassageiroRequest;
+import com.schelas.schelasvans.model.AlocaVeiculoRequest;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -127,7 +128,7 @@ public class AlocaVeic extends AppCompatActivity {
 
                     for (int i = 0; i < jobj.length(); i++) {
                         JSONObject ob = jobj.getJSONObject(i);
-                        listVeic.add(ob.getString("VeiculoPlaca")+" - "+ob.getString("VeiculoCapacidade")+ " lugares restam");
+                        listVeic.add(ob.getString("VeiculoPlaca")+" - Restam "+ob.getString("VeiculoCapacidade")+ " lugares.");
                     }
                     ((BaseAdapter) spVeic.getAdapter()).notifyDataSetChanged();
                 } catch (JSONException e) {
@@ -194,7 +195,7 @@ public class AlocaVeic extends AppCompatActivity {
                     }
                 };
 
-                AlocaPassageiroRequest veiculoRequest = new AlocaPassageiroRequest(listPass,veic,responseListener);
+                AlocaVeiculoRequest veiculoRequest = new AlocaVeiculoRequest(listPass,veic,responseListener);
                 RequestQueue queue = Volley.newRequestQueue(AlocaVeic.this);
                 queue.add(veiculoRequest);
 
