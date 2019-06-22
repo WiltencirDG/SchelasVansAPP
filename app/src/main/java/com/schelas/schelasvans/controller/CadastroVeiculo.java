@@ -168,7 +168,7 @@ public class CadastroVeiculo extends AppCompatActivity {
                         etcor.setText(veic.getCor());
                         etmodelo.setText(veic.getModelo());
                         etmarca.setText(veic.getMarca());
-                        etcapacidade.setText(veic.getCapacidade());
+                        etcapacidade.setText(veic.getCapacidade().toString());
 
                     }
 

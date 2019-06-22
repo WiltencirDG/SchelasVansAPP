@@ -2,16 +2,21 @@ package com.schelas.schelasvans.controller;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.util.SparseBooleanArray;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -23,6 +28,8 @@ import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.main.Dashboard;
 import com.schelas.schelasvans.model.AlocaPassageiroRequest;
 import com.schelas.schelasvans.model.AlocaVeiculoRequest;
+import com.schelas.schelasvans.model.Destinos;
+import com.schelas.schelasvans.model.Veiculos;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,7 +46,7 @@ public class AlocaVeic extends AppCompatActivity {
     private Spinner spVeic;
     private ListView spDest;
     private List<String> veics;
-    private List<String> dests;
+    private List<Destinos> dests;
 
 
     protected void onCreate(Bundle savedInstanceState){
@@ -73,7 +80,31 @@ public class AlocaVeic extends AppCompatActivity {
     private void setData(){
         dests = getDests();
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_multiple_choice, dests);
+        ArrayAdapter<Destinos> adapter = new ArrayAdapter<Destinos>(this, android.R.layout.simple_list_item_multiple_choice, dests){
+            @Override
+            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+
+                Destinos dest = (Destinos) spDest.getAdapter().getItem(position);
+                tv.setText(dest.getDescricao());
+
+                return view;
+            }
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getDropDownView(position, convertView, parent);
+                TextView tv = (TextView) view;
+
+                Destinos dest = (Destinos) spDest.getAdapter().getItem(position);
+                tv.setText(dest.getDescricao());
+
+                return view;
+            }
+        };
+
         spDest.setAdapter(adapter);
 
         veics = getVeics();
@@ -83,8 +114,8 @@ public class AlocaVeic extends AppCompatActivity {
 
     }
 
-    private List<String> getDests(){
-        final List<String> listDest = new ArrayList<>();
+    private List<Destinos> getDests(){
+        final List<Destinos> listDest = new ArrayList<>();
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://schelasvansapi.000webhostapp.com/api/get/Destino.php" , new Response.Listener<String>() {
             @Override
@@ -94,7 +125,7 @@ public class AlocaVeic extends AppCompatActivity {
 
                     for (int i = 0; i < jobj.length(); i++) {
                         JSONObject ob = jobj.getJSONObject(i);
-                        listDest.add(ob.getString("DestinoDesc"));
+                        listDest.add(new Destinos(ob.getInt("DestinoId"),ob.getString("DestinoDesc")));
                     }
 
                     ((BaseAdapter) spDest.getAdapter()).notifyDataSetChanged();
@@ -161,7 +192,8 @@ public class AlocaVeic extends AppCompatActivity {
 
                 for (int i = 0; i < spDest.getAdapter().getCount(); i++) {
                     if (checked.get(i)) {
-                        listPass.add('"'+spDest.getAdapter().getItem(i).toString()+'"');
+                        Destinos destAtual = (Destinos) spDest.getAdapter().getItem(i);
+                        listPass.add(destAtual.getId().toString());
                     }
                 }
 
@@ -173,6 +205,8 @@ public class AlocaVeic extends AppCompatActivity {
                     public void onResponse(String response) {
 
                         try {
+                            Log.d("SchelasVans", "Response: "+response);
+
                             if (response.contains("true")) {
 
                                 Intent intent = new Intent(AlocaVeic.this, Dashboard.class);

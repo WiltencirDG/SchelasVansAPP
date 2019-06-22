@@ -6,4 +6,5 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".controller.Maps"
     android:id="@+id/Maps"
-    android:name="com.google.android.gms.maps.SupportMapFragment"/>
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    />

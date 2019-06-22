@@ -1,5 +1,7 @@
 package com.schelas.schelasvans.model;
 
+import android.content.Intent;
+
 import java.io.Serializable;
 
 public class Destinos implements Serializable {
@@ -16,6 +18,11 @@ public class Destinos implements Serializable {
         setNum(num);
         setBairro(bairro);
         setCidade(cidade);
+        setDescricao(descricao);
+    }
+
+    public Destinos(Integer id, String descricao){
+        setId(id);
         setDescricao(descricao);
     }
 

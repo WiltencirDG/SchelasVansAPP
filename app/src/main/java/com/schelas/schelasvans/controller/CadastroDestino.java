@@ -134,7 +134,7 @@ public class CadastroDestino extends AppCompatActivity {
                                 }
                             };
 
-                            DestinoRequest destinoRequest = new DestinoRequest(destId,desc,rua, number, bairro, cidade, responseListener);
+                            DestinoRequest destinoRequest = new DestinoRequest(destId,desc,rua, number, bairro, cidade, link, responseListener);
                             RequestQueue queue = Volley.newRequestQueue(CadastroDestino.this);
                             queue.add(destinoRequest);
                         } else {

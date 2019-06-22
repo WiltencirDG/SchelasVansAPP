@@ -19,6 +19,7 @@ import com.schelas.schelasvans.controller.ListDestino;
 import com.schelas.schelasvans.controller.ListPassageiro;
 import com.schelas.schelasvans.controller.ListRelatorio;
 import com.schelas.schelasvans.controller.ListVeiculo;
+import com.schelas.schelasvans.controller.Rotas;
 
 public class Dashboard extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -80,7 +81,8 @@ public class Dashboard extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_rotas) {
-
+            Intent intent = new Intent(this, Rotas.class);
+            startActivity(intent);
         } else if (id == R.id.nav_relatorios) {
             Intent intent = new Intent(this, ListRelatorio.class);
             startActivity(intent);

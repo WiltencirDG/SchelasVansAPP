@@ -121,6 +121,9 @@
     <string name="actAlocVR">Alocar Veiculo na Rota</string>
     <string name="menuAlocaPass">Passageiros</string>
     <string name="menuAlocaVeic">Veiculos</string>
+    <string name="actRotas">Rotas</string>
+    <string name="RotaVeiculo">Veiculo</string>
+    <string name="navRotas">Rotas</string>
 
 
 </resources>

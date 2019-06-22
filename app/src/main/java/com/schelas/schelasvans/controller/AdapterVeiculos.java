@@ -67,7 +67,7 @@ public class AdapterVeiculos extends RecyclerView.Adapter<AdapterVeiculos.ViewHo
             @Override
             public void onClick(View v) {
                 Intent register = new Intent(context, CadastroVeiculo.class);
-                register.putExtra("id",mData.get(position).getId());
+                register.putExtra("id",mData.get(position).getId().toString());
                 register.putExtra("type","edit");
                 context.startActivity(register);
             }
