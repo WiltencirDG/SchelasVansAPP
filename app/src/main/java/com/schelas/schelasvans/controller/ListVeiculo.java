@@ -20,7 +20,9 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.maps.model.Dash;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.main.Dashboard;
 import com.schelas.schelasvans.model.Veiculos;
 
 import org.json.JSONArray;
@@ -144,7 +146,9 @@ public class ListVeiculo extends AppCompatActivity {
         ivToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                finish();
+                Intent intent = new Intent(ListVeiculo.this, Dashboard.class);
+                ListVeiculo.this.startActivity(intent);
             }
         });
 

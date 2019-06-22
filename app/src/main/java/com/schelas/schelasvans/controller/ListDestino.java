@@ -19,6 +19,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.main.Dashboard;
 import com.schelas.schelasvans.model.DestinoRequest;
 import com.schelas.schelasvans.model.Destinos;
 import com.schelas.schelasvans.model.Passageiros;
@@ -140,7 +141,9 @@ public class ListDestino extends AppCompatActivity {
         ivToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                finish();
+                Intent intent = new Intent(ListDestino.this, Dashboard.class);
+                ListDestino.this.startActivity(intent);
             }
         });
 

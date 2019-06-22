@@ -24,6 +24,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.main.Dashboard;
 import com.schelas.schelasvans.model.PassageiroRequest;
 import com.schelas.schelasvans.model.Passageiros;
 
@@ -103,6 +104,7 @@ public class ListPassageiro extends AppCompatActivity {
     private void goToDescription(Passageiros passageiro){
         Intent intent = new Intent(ListPassageiro.this, DetailPassageiro.class);
         intent.putExtra("passageiro", passageiro);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
@@ -149,7 +151,9 @@ public class ListPassageiro extends AppCompatActivity {
         ivToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                finish();
+                Intent intent = new Intent(ListPassageiro.this, Dashboard.class);
+                ListPassageiro.this.startActivity(intent);
             }
         });
 

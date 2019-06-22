@@ -18,6 +18,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.main.Dashboard;
 import com.schelas.schelasvans.model.PassageiroRequest;
 import com.schelas.schelasvans.model.Passageiros;
 import com.schelas.schelasvans.model.VeiculoRequest;
@@ -141,7 +142,9 @@ public class CadastroVeiculo extends AppCompatActivity {
         ivToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                finish();
+                Intent intent = new Intent(CadastroVeiculo.this, ListVeiculo.class);
+                CadastroVeiculo.this.startActivity(intent);
             }
         });
 

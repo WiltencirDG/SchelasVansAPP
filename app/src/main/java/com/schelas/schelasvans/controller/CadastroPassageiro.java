@@ -7,9 +7,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -18,6 +22,8 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.main.Dashboard;
+import com.schelas.schelasvans.model.Cidade;
 import com.schelas.schelasvans.model.PassageiroRequest;
 import com.schelas.schelasvans.model.Passageiros;
 
@@ -37,11 +43,11 @@ public class CadastroPassageiro extends AppCompatActivity {
     private EditText etaddress;
     private EditText etnumber;
     private EditText etbairro;
-    private EditText etcidade;
+    private Spinner spCidade;
     private Button btncadastrar;
     private ImageView ivToolbar;
     private String link;
-
+    private List<String> cities;
     private String type;
     private String passId = "";
     static final String TAG = "Schelas Vans";
@@ -51,6 +57,7 @@ public class CadastroPassageiro extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cadastro_passageiro);
         setUI();
+        setData();
         setToolbar();
         Act();
 
@@ -73,9 +80,17 @@ public class CadastroPassageiro extends AppCompatActivity {
         etaddress = findViewById(R.id.etAddress);
         etnumber = findViewById(R.id.etAddressNum);
         etbairro = findViewById(R.id.etAddressBairro);
-        etcidade = findViewById(R.id.etAddressCidade);
+        spCidade = findViewById(R.id.spinnerCityPassageiro);
         btncadastrar = findViewById(R.id.btnCadPass);
         ivToolbar = findViewById(R.id.imgNavBar);
+    }
+
+    private void setData(){
+        cities = getCities();
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cities);
+        spCidade.setAdapter(adapter);
+
     }
 
     private void Act() {
@@ -90,7 +105,7 @@ public class CadastroPassageiro extends AppCompatActivity {
                 final String address = etaddress.getText().toString();
                 final String number = etnumber.getText().toString();
                 final String bairro = etbairro.getText().toString();
-                final String cidade = etcidade.getText().toString();
+                final String cidade = spCidade.getSelectedItem().toString();
 
                 if (validator.validateEmail(email)) {
 
@@ -139,9 +154,13 @@ public class CadastroPassageiro extends AppCompatActivity {
                                             queue.add(passageiroRequest);
 
 
-                                        } else {
-                                            etcidade.setError("Campo inválido");
-                                        }
+                                        }else{
+                                           AlertDialog.Builder builder = new AlertDialog.Builder(CadastroPassageiro.this);
+                                           builder.setMessage(R.string.cadastroFail)
+                                                   .setNegativeButton(R.string.tryAgain, null)
+                                                   .create()
+                                                   .show();
+                                       }
 
                                     } else {
                                         etbairro.setError("Campo inválido");
@@ -176,7 +195,9 @@ public class CadastroPassageiro extends AppCompatActivity {
         ivToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                finish();
+                Intent intent = new Intent(CadastroPassageiro.this, ListPassageiro.class);
+                CadastroPassageiro.this.startActivity(intent);
             }
         });
 
@@ -202,9 +223,6 @@ public class CadastroPassageiro extends AppCompatActivity {
                         etaddress.setText(p.getAddress());
                         etnumber.setText(p.getAddressNumber());
                         etbairro.setText(p.getBairro());
-                        etcidade.setText(p.getCidade());
-
-
                     }
 
                 } catch (JSONException e) {
@@ -222,6 +240,38 @@ public class CadastroPassageiro extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(CadastroPassageiro.this);
         requestQueue.add(stringRequest);
 
+    }
+
+    private List<String> getCities(){
+        final List<String> cities = new ArrayList<>();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "http://schelasvansapi.000webhostapp.com/api/get/Cidade.php" , new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jobj = new JSONArray(response);
+
+                    for (int i = 0; i < jobj.length(); i++) {
+                        JSONObject ob = jobj.getJSONObject(i);
+                        cities.add(ob.getString("CidadeNome"));
+                    }
+                    ((BaseAdapter) spCidade.getAdapter()).notifyDataSetChanged();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(CadastroPassageiro.this, "Erro ao carregar as cidades.", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        RequestQueue requestQueue= Volley.newRequestQueue(CadastroPassageiro.this);
+        requestQueue.add(stringRequest);
+
+        return cities;
     }
 
 }
