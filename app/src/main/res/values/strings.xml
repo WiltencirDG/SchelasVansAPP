@@ -124,6 +124,8 @@
     <string name="actRotas">Rotas</string>
     <string name="RotaVeiculo">Veiculo</string>
     <string name="navRotas">Rotas</string>
+    <string name="actMapa">Mapa</string>
+    <string name="actRotaVeiculo">Carregar rota no mapa</string>
 
 
 </resources>

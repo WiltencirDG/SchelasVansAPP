@@ -1,11 +1,14 @@
 package com.schelas.schelasvans.controller;
 
 import android.content.Context;
+import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -15,21 +18,27 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.main.Dashboard;
 import com.schelas.schelasvans.model.Destinos;
 import com.schelas.schelasvans.model.Passageiros;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 public class Maps extends FragmentActivity implements OnMapReadyCallback{
     private GoogleMap mMap;
     private Passageiros passageiro;
     private Destinos destino;
 
+    private ImageView ivToolbar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maps);
+
+        setToolbar();
 
         passageiro = (Passageiros) getIntent().getSerializableExtra("passageiro");
         destino = (Destinos) getIntent().getSerializableExtra("destino");
@@ -99,5 +108,17 @@ public class Maps extends FragmentActivity implements OnMapReadyCallback{
         return p1;
     }
 
+    private void setToolbar(){
+        ivToolbar = findViewById(R.id.imgNavBar);
+        ivToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(Maps.this, Dashboard.class);
+                Maps.this.startActivity(intent);
+            }
+        });
+
+    }
 
 }

@@ -37,7 +37,6 @@
         android:layout_height="match_parent"
         android:elevation="25dp"
         android:layout_below="@id/destool"
-        android:layout_above="@id/fabPass"
         />
 
 </RelativeLayout>

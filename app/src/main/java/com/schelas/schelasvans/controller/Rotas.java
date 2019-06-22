@@ -5,11 +5,13 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -35,7 +37,11 @@ public class Rotas extends AppCompatActivity {
     private ImageView ivToolbar;
     private Spinner spinner;
     private List<Veiculos> veiculos;
-    //private GoogleMap mMap;
+    private Button btnMap;
+
+    private String veicId;
+    private String destination;
+    private List<String> destinations;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -61,11 +67,13 @@ public class Rotas extends AppCompatActivity {
 
     private void setUI() {
         spinner = findViewById(R.id.spinnerRotaVeic);
-
+        btnMap = findViewById(R.id.btnRotaMap);
     }
 
     private void setData(){
         veiculos = getVeics();
+
+
         ArrayAdapter<Veiculos> adapter = new ArrayAdapter<Veiculos>(this, android.R.layout.simple_list_item_1, veiculos){
             @Override
             public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -96,18 +104,32 @@ public class Rotas extends AppCompatActivity {
     }
 
     private void Act(){
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id){
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 Veiculos veic = (Veiculos)spinner.getAdapter().getItem(position);
+                veicId = veic.getId().toString();
+                Log.d("SCHELASROUTE", "onItemSelected: ..."+veicId);
+                destination = getDestination(veicId);
+                destinations = getListDestinations(veicId);
+            }
 
-                Intent i = new Intent(getBaseContext(), RouteMaps.class);
-                i.putExtra("veiculo",veic);
-                startActivity(i);
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
-            public void onNothingSelected(AdapterView<?> parent)
-            {
+        });
+
+
+
+        btnMap.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getBaseContext(), RouteMaps.class);
+                i.putExtra("veiculo",veicId);
+                i.putExtra("destination",destination);
+                i.putExtra("destinations",destinations.toArray());
+                startActivity(i);
 
             }
         });
@@ -144,4 +166,70 @@ public class Rotas extends AppCompatActivity {
 
         return listVeic;
     }
+
+    public String getDestination(String veiculo){
+        final List<String> finalDestination = new ArrayList<>();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://schelasvansapi.000webhostapp.com/api/getDestinations/Veiculo.php?id="+veiculo+"&list=false" , new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jobj = new JSONArray(response);
+
+                    for (int i = 0; i < jobj.length(); i++) {
+                        JSONObject ob = jobj.getJSONObject(i);
+                        finalDestination.add(ob.getString("endereco"));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+        Log.d("SCHELASROUTE", "getDestination: ..."+ finalDestination);
+
+        return finalDestination.get(0);
+    }
+
+    public List<String> getListDestinations(String veiculo){
+        final List<String> listDestinations = new ArrayList<>();
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://schelasvansapi.000webhostapp.com/api/getDestinations/Veiculo.php?id="+veiculo+"&list=true" , new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jobj = new JSONArray(response);
+
+                    for (int i = 0; i < jobj.length(); i++) {
+                        JSONObject ob = jobj.getJSONObject(i);
+                        listDestinations.add(ob.getString("endereco"));
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+        Log.d("SCHELASROUTE", "getListDestinations: ..." +listDestinations);
+        return listDestinations;
+    }
+
 }

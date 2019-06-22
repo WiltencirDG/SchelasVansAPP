@@ -1,6 +1,7 @@
 package com.schelas.schelasvans.model;
 
 import android.content.Context;
+import android.util.Log;
 import android.widget.BaseAdapter;
 
 import com.android.volley.Request;
@@ -88,68 +89,5 @@ public class Veiculos implements Serializable {
     }
 
     public String getDesc() { return this.Desc; }
-
-    public static String getDestination(Context context, Veiculos veiculo){
-        final List<String> finalDestination = new ArrayList<>();
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://schelasvansapi.000webhostapp.com/api/getDestinations/Veiculo.php?id="+veiculo.getId()+"&list=false" , new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONArray jobj = new JSONArray(response);
-
-                    for (int i = 0; i < jobj.length(); i++) {
-                        JSONObject ob = jobj.getJSONObject(i);
-                        finalDestination.add(ob.getString("endereco"));
-                    }
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
-        RequestQueue requestQueue= Volley.newRequestQueue(context);
-        requestQueue.add(stringRequest);
-
-        return finalDestination.get(0);
-    }
-
-    public static List<String> getListDestinations(Context context, Veiculos veiculo){
-        final List<String> listDestinations = new ArrayList<>();
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://schelasvansapi.000webhostapp.com/api/getDestinations/Veiculo.php?id="+veiculo.getId()+"&list=true" , new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONArray jobj = new JSONArray(response);
-
-                    for (int i = 0; i < jobj.length(); i++) {
-                        JSONObject ob = jobj.getJSONObject(i);
-                        listDestinations.add(ob.getString("endereco"));
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-
-            }
-        });
-
-        RequestQueue requestQueue= Volley.newRequestQueue(context);
-        requestQueue.add(stringRequest);
-
-        return listDestinations;
-    }
 
 }

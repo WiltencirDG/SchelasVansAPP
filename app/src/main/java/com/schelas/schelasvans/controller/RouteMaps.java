@@ -20,6 +20,12 @@ import com.akexorcist.googledirection.constant.TransportMode;
 import com.akexorcist.googledirection.model.Direction;
 import com.akexorcist.googledirection.model.Route;
 import com.akexorcist.googledirection.util.DirectionConverter;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -30,6 +36,10 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.model.Veiculos;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +47,7 @@ import java.util.List;
 public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, DirectionCallback {
     private GoogleMap mMap;
 
-    private Veiculos veiculo;
+    private String veiculo;
 
     private LatLng origin;
     private LatLng destination;
@@ -50,13 +60,13 @@ public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, D
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maps);
 
-        veiculo = (Veiculos) getIntent().getSerializableExtra("veiculo");
+        veiculo =  getIntent().getStringExtra("veiculo");
+        destination = getLocationFromAddress(RouteMaps.this,getIntent().getStringExtra("destination"));
+        sDestinations = getIntent().getStringArrayListExtra("destinations");
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
 
-
-        destination = getLocationFromAddress(RouteMaps.this,Veiculos.getDestination(this,veiculo));
-
-        for(String forDestination : Veiculos.getListDestinations(this,veiculo)){
+        for(String forDestination : sDestinations){
             destinations.add(getLocationFromAddress(RouteMaps.this,forDestination));
         }
 
@@ -152,8 +162,6 @@ public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, D
     public class GPSListener implements LocationListener {
         @Override
         public void onLocationChanged(Location location) {
-            // your code and required methods go here...
-            Log.d("SCHELAS", "onLocationChanged: "+location);
             origin = new LatLng(location.getLatitude(),location.getLongitude());
             requestDirection();
         }
@@ -183,4 +191,9 @@ public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, D
             finish();
         }
     }
+
+
+
+
+
 }
