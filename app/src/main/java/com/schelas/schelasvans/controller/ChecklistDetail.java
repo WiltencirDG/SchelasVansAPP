@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -15,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -42,7 +44,6 @@ public class ChecklistDetail extends AppCompatActivity {
     private List<Passageiros> passageiros;
     private Button btnCheck;
 
-    private String veicId;
 
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
@@ -73,7 +74,7 @@ public class ChecklistDetail extends AppCompatActivity {
 
     private void setData(){
         veiculos = getVeics();
-        passageiros = getPasses();
+
 
         ArrayAdapter<Veiculos> adapter = new ArrayAdapter<Veiculos>(this, android.R.layout.simple_list_item_1, veiculos){
             @Override
@@ -101,34 +102,10 @@ public class ChecklistDetail extends AppCompatActivity {
         };
 
 
-        ArrayAdapter<Passageiros> adapter2 = new ArrayAdapter<Passageiros>(this, android.R.layout.simple_list_item_multiple_choice, passageiros){
-            @Override
-            public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-
-                Passageiros pass = (Passageiros) listPasses.getAdapter().getItem(position);
-                tv.setText(pass.getName());
-
-                return view;
-            }
-
-            @NonNull
-            @Override
-            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-                View view = super.getDropDownView(position, convertView, parent);
-                TextView tv = (TextView) view;
-
-                Passageiros pass = (Passageiros) listPasses.getAdapter().getItem(position);
-                tv.setText(pass.getName());
-
-                return view;
-            }
-        };
 
         spinner.setAdapter(adapter);
 
-        listPasses.setAdapter(adapter2);
+
 
     }
 
@@ -137,8 +114,38 @@ public class ChecklistDetail extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 btnCheck.setVisibility(View.GONE);
-                Veiculos veic = (Veiculos)spinner.getAdapter().getItem(position);
-                //TODO: Set the right behaviour when select new one
+
+                passageiros = getPasses();
+
+                ArrayAdapter<Passageiros> adapter2 = new ArrayAdapter<Passageiros>(getBaseContext(), android.R.layout.simple_list_item_multiple_choice, passageiros){;
+                    @Override
+                    public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                        View view = super.getDropDownView(position, convertView, parent);
+                        TextView tv = (TextView) view;
+
+                        Passageiros pass = (Passageiros) listPasses.getAdapter().getItem(position);
+                        listPasses.setItemChecked(position,pass.getSelected());
+                        tv.setText(pass.getName());
+
+                        return view;
+                    }
+
+                    @NonNull
+                    @Override
+                    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                        View view = super.getDropDownView(position, convertView, parent);
+                        TextView tv = (TextView) view;
+
+                        Passageiros pass = (Passageiros) listPasses.getAdapter().getItem(position);
+                        listPasses.setItemChecked(position,pass.getSelected());
+                        tv.setText(pass.getName());
+
+                        return view;
+                    }
+                };
+
+
+                listPasses.setAdapter(adapter2);
             }
 
             @Override
@@ -160,7 +167,7 @@ public class ChecklistDetail extends AppCompatActivity {
     private List<Veiculos> getVeics(){
         final List<Veiculos> listVeic = new ArrayList<>();
 
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://schelasvansapi.000webhostapp.com/api/get/Veiculo.php" , new Response.Listener<String>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://schelasvansapi.000webhostapp.com/api/getChecklist/Veiculo.php" , new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 try {
@@ -191,9 +198,16 @@ public class ChecklistDetail extends AppCompatActivity {
 
     private List<Passageiros> getPasses(){
         final List<Passageiros> listPass = new ArrayList<>();
+        String veicId = "";
 
-        //TODO: Pass a new parameter. VeiculoId.
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://schelasvansapi.000webhostapp.com/api/get/ChecklistPass.php" , new Response.Listener<String>() {
+        Veiculos veic =(Veiculos)spinner.getSelectedItem();
+        if(veic != null){
+            veicId = veic.getId().toString();
+        }
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://schelasvansapi.000webhostapp.com/api/getChecklist/Passageiro.php?veiculo="+veicId , new Response.Listener<String>() {
+
             @Override
             public void onResponse(String response) {
                 try {
@@ -201,12 +215,13 @@ public class ChecklistDetail extends AppCompatActivity {
 
                     for (int i = 0; i < jobj.length(); i++) {
                         JSONObject ob = jobj.getJSONObject(i);
-                        Passageiros pass = new Passageiros();
-                        pass = pass.getById(getBaseContext(), ob.getString("PassageiroId"));
-                        listPass.add(pass);
-                        //TODO: Check if will return null. Then: Add all to a list, for into the list, get the objects
+                        listPass.add(new Passageiros(ob.getString("PassageiroId"), ob.getString("PassageiroNome"),ob.getString("isSelected")));
+
                     }
-                    ((BaseAdapter) spinner.getAdapter()).notifyDataSetChanged();
+                    passageiros = listPass;
+                    ((BaseAdapter) listPasses.getAdapter()).notifyDataSetChanged();
+                    btnCheck.setVisibility(View.VISIBLE);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -215,7 +230,7 @@ public class ChecklistDetail extends AppCompatActivity {
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                //TODO: Toast to error because of the nullPointer
+                Toast.makeText(ChecklistDetail.this, "Ocorreu um erro no banco de dados. Tente novamente.", Toast.LENGTH_SHORT).show();
             }
         });
 
