@@ -4,8 +4,10 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.util.SparseBooleanArray;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -25,6 +27,9 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.main.Dashboard;
+import com.schelas.schelasvans.model.ChecklistRequest;
+import com.schelas.schelasvans.model.DestinoRequest;
 import com.schelas.schelasvans.model.Passageiros;
 import com.schelas.schelasvans.model.Veiculos;
 
@@ -43,6 +48,7 @@ public class ChecklistDetail extends AppCompatActivity {
     private List<Veiculos> veiculos;
     private List<Passageiros> passageiros;
     private Button btnCheck;
+    private String veicId;
 
 
     protected void onCreate(Bundle savedInstanceState){
@@ -159,7 +165,38 @@ public class ChecklistDetail extends AppCompatActivity {
         btnCheck.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //TODO: ChecklistRequest
+
+                for (int i = 0; i < listPasses.getAdapter().getCount(); i++) {
+                    passageiros.get(i).setSelected(listPasses.isItemChecked(i));
+                }
+
+                Response.Listener<String> responseListener = new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+
+                        try {
+                            if (response.contains("true")) {
+                                finish();
+                            } else {
+                                AlertDialog.Builder builder = new AlertDialog.Builder(ChecklistDetail.this);
+                                builder.setMessage(R.string.cadastroFail)
+                                        .setNegativeButton(R.string.tryAgain, null)
+                                        .create()
+                                        .show();
+                            }
+
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+
+
+                    }
+                };
+
+                ChecklistRequest checklistRequest = new ChecklistRequest(veicId,passageiros,responseListener);
+                RequestQueue queue = Volley.newRequestQueue(ChecklistDetail.this);
+                queue.add(checklistRequest);
             }
         });
     }
@@ -198,7 +235,7 @@ public class ChecklistDetail extends AppCompatActivity {
 
     private List<Passageiros> getPasses(){
         final List<Passageiros> listPass = new ArrayList<>();
-        String veicId = "";
+        veicId = "";
 
         Veiculos veic =(Veiculos)spinner.getSelectedItem();
         if(veic != null){
