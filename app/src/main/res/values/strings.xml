@@ -101,7 +101,7 @@
     <string name="actHome">Home</string>
     <string name="welcome">Bem-Vindo ao</string>
     <string name="bSchelas">SchelasVans</string>
-    <string name="textHome">\tGerencie viagens, passageiros e vans de sua empresa de uma maneira mais eficaz e inteligente com o SchelasVans!</string>
+    <string name="textHome">\t\tGerencie viagens, passageiros e vans de sua empresa de uma maneira mais eficaz e inteligente com o SchelasVans!</string>
     <string name="actAbout">About</string>
     <string name="sobre">Sobre</string>
     <string name="sobre2">\tO SchelasVans é um gerenciador de frotas de vans. \n\tO Projeto está sendo desenvolvido para o TCC pela Universidade Tuiuti do Paraná</string>
