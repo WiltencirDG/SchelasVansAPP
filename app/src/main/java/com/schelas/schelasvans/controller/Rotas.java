@@ -112,7 +112,7 @@ public class Rotas extends AppCompatActivity {
 
                 Veiculos veic = (Veiculos)spinner.getAdapter().getItem(position);
                 veicId = veic.getId().toString();
-                Log.d("SCHELASROUTE", "onItemSelected: ..."+veicId);
+
                 getDestination(veicId);
                 getListDestinations(veicId);
 
@@ -184,7 +184,7 @@ public class Rotas extends AppCompatActivity {
                         JSONObject ob = jobj.getJSONObject(i);
                         destination = '"'+ob.getString("endereco")+'"';
                     }
-                    btnMap.setVisibility(View.VISIBLE);
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

@@ -36,6 +36,7 @@ import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
@@ -121,12 +122,12 @@ public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, D
             int legCount = route.getLegList().size();
             for (int index = 0; index < legCount; index++) {
                 Leg leg = route.getLegList().get(index);
-                mMap.addMarker(new MarkerOptions().position(leg.getStartLocation().getCoordination()));
+                mMap.addMarker(new MarkerOptions().position(leg.getStartLocation().getCoordination()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
                 if (index == legCount - 1) {
                     mMap.addMarker(new MarkerOptions().position(leg.getEndLocation().getCoordination()));
                 }
                 List<Step> stepList = leg.getStepList();
-                ArrayList<PolylineOptions> polylineOptionList = DirectionConverter.createTransitPolyline(this, stepList, 5, Color.RED, 3, Color.BLUE);
+                ArrayList<PolylineOptions> polylineOptionList = DirectionConverter.createTransitPolyline(this, stepList, 4, Color.RED, 3, Color.BLUE);
                 for (PolylineOptions polylineOption : polylineOptionList) {
                     mMap.addPolyline(polylineOption);
                 }
@@ -212,7 +213,7 @@ public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, D
             locationManager.requestSingleUpdate( LocationManager.GPS_PROVIDER, new GPSListener(), null );
         } catch ( SecurityException e ) {
             e.printStackTrace();
-            Toast.makeText(this, "Não foi permitido o acesso ao GPS", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Não foi permitido o acesso ao GPS", Toast.LENGTH_LONG).show();
             finish();
         }
     }
