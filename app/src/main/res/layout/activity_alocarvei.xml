@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical">
 
     <android.support.v7.widget.Toolbar
@@ -15,20 +15,20 @@
 
         <ImageView
             android:id="@+id/imgNavBar"
-            android:contentDescription="@string/back_button"
             android:layout_width="32dp"
             android:layout_height="32dp"
-            android:src="@drawable/ic_back_24dp"/>
+            android:contentDescription="@string/back_button"
+            android:src="@drawable/ic_back_24dp" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
             android:text="@string/actAlocVR"
             android:textColor="@color/colorTextWhite"
-            android:textStyle="bold"
             android:textSize="16sp"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"/>
+            android:textStyle="bold" />
 
     </android.support.v7.widget.Toolbar>
 
@@ -40,73 +40,93 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:background="@color/colorBrackgroundWhite">
 
-            <TextView
-                android:id="@+id/veiculo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/veiculo"
-                android:textColor="@color/colorAccent"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"/>
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_veiculo_24dp"
-                android:layout_marginBottom="20dp"/>
-
-            <Spinner
-                android:id="@+id/spinner1"
+            <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@android:drawable/btn_dropdown"
-                android:spinnerMode="dropdown"
-                tools:ignore="MissingConstraints"
-                android:layout_marginTop="10dp"/>
+                app:cardBackgroundColor="@color/colorTextWhite"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="40dp">
 
-            <TextView
-                android:id="@+id/destino"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/actDest"
-                android:textColor="@color/colorAccent"
-                android:textSize="18sp"
-                android:layout_gravity="center"
-                android:layout_marginTop="30dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_directions"
-                android:layout_marginBottom="20dp"/>
+                    <TextView
+                        android:id="@+id/veiculo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/veiculo"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
 
-            <ListView
-                android:id="@+id/spinner3"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_margin="15dp"
-                android:choiceMode="singleChoice"
-                android:nestedScrollingEnabled="true">
-            </ListView>
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="20dp"
+                        android:src="@drawable/ic_veiculo_24dp" />
 
-            <Button
-                android:id="@+id/alocarVei"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="80dp"
-                android:layout_marginStart="15dp"
-                android:layout_marginEnd="15dp"
-                android:layout_gravity="center"
-                android:text="@string/actAloc"
-                android:textSize="14sp"
-                android:background="@color/colorAccent"
-                android:textColor="@color/colorTextWhite"
-                />
+                    <Spinner
+                        android:id="@+id/spinner1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@android:drawable/btn_dropdown"
+                        android:spinnerMode="dropdown"
+                        tools:ignore="MissingConstraints"
+                        android:layout_marginLeft="7dp"
+                        android:layout_marginRight="7dp"/>
+
+                    <TextView
+                        android:id="@+id/destino"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="30dp"
+                        android:text="@string/actDest"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="35dp"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="20dp"
+                        android:src="@drawable/ic_directions" />
+
+                    <ListView
+                        android:id="@+id/spinner3"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_margin="15dp"
+                        android:choiceMode="singleChoice"
+                        android:nestedScrollingEnabled="true"></ListView>
+
+                    <Button
+                        android:id="@+id/alocarVei"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="80dp"
+                        android:layout_marginEnd="15dp"
+                        android:background="@color/colorAccent"
+                        android:text="@string/actAloc"
+                        android:textColor="@color/colorTextWhite"
+                        android:textSize="14sp"
+                        android:layout_marginBottom="20dp"/>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
 
         </LinearLayout>
 

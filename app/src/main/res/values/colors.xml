@@ -10,4 +10,5 @@
     <color name="colorErrorText">#821</color>
     <color name="colorItemBackground">#cdddf7</color>
     <color name="white">#fff</color>
+    <color name="colorBrackgroundWhite">#EEE</color>
 </resources>
