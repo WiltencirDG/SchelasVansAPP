@@ -13,6 +13,11 @@
             android:icon="@drawable/ic_relatorio_24dp"
             android:title="@string/menuRelatorio" />
 
+        <item
+            android:id="@+id/nav_checklist"
+            android:icon="@drawable/ic_checklist_24dp"
+            android:title="@string/menuChecklist" />
+
     </group>
 
     <item android:title="@string/menuItemCadastros">

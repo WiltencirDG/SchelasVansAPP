@@ -12,6 +12,7 @@ public class Passageiros implements Serializable {
     private String email;
     private String bairro;
     private String cidade;
+    private Boolean isSelected;
 
     public Passageiros(){
 
@@ -26,6 +27,17 @@ public class Passageiros implements Serializable {
         setEmail(email);
         setBairro(bairro);
         setCidade(cidade);
+    }
+
+    public Passageiros(String idPass, String name, String isSelected ){
+        setName(name);
+        setIdPass(idPass);
+        if(isSelected.equals("1")){
+            setSelected(true);
+        }else{
+            setSelected(false);
+        }
+
     }
 
     public String getName() {
@@ -90,5 +102,13 @@ public class Passageiros implements Serializable {
 
     public void setCidade(String cidade) {
         this.cidade = cidade;
+    }
+
+    public Boolean getSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(Boolean selected) {
+        isSelected = selected;
     }
 }

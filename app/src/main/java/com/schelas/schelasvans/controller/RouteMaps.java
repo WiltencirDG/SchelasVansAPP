@@ -2,23 +2,29 @@ package com.schelas.schelasvans.controller;
 
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.akexorcist.googledirection.DirectionCallback;
 import com.akexorcist.googledirection.GoogleDirection;
 import com.akexorcist.googledirection.constant.TransportMode;
 import com.akexorcist.googledirection.model.Direction;
+import com.akexorcist.googledirection.model.Leg;
 import com.akexorcist.googledirection.model.Route;
+import com.akexorcist.googledirection.model.Step;
 import com.akexorcist.googledirection.util.DirectionConverter;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -33,7 +39,9 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 import com.schelas.schelasvans.R;
+import com.schelas.schelasvans.main.Dashboard;
 import com.schelas.schelasvans.model.Veiculos;
 
 import org.json.JSONArray;
@@ -42,6 +50,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, DirectionCallback {
@@ -52,24 +61,31 @@ public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, D
     private LatLng origin;
     private LatLng destination;
     private List<String> sDestinations;
+    private String destinos;
     private List<LatLng> destinations;
     private LocationManager locationManager;
+    private ImageView ivToolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maps);
 
+        setToolbar();
+
         veiculo =  getIntent().getStringExtra("veiculo");
         destination = getLocationFromAddress(RouteMaps.this,getIntent().getStringExtra("destination"));
-        sDestinations = getIntent().getStringArrayListExtra("destinations");
+        destinos = getIntent().getStringExtra("destinations");
+
+        sDestinations = new ArrayList<String>(Arrays.asList(destinos.split(",")));
 
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+
+        destinations = new ArrayList<>();
 
         for(String forDestination : sDestinations){
             destinations.add(getLocationFromAddress(RouteMaps.this,forDestination));
         }
-
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.Maps);
@@ -101,13 +117,20 @@ public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, D
     public void onDirectionSuccess(Direction direction, String rawBody) {
 
         if (direction.isOK()) {
-            Toast.makeText(this, "Direction success", Toast.LENGTH_SHORT).show();
             Route route = direction.getRouteList().get(0);
-            mMap.addMarker(new MarkerOptions().position(origin));
-            mMap.addMarker(new MarkerOptions().position(destination));
-
-            ArrayList<LatLng> directionPositionList = route.getLegList().get(0).getDirectionPoint();
-            mMap.addPolyline(DirectionConverter.createPolyline(this, directionPositionList, 5, Color.RED));
+            int legCount = route.getLegList().size();
+            for (int index = 0; index < legCount; index++) {
+                Leg leg = route.getLegList().get(index);
+                mMap.addMarker(new MarkerOptions().position(leg.getStartLocation().getCoordination()));
+                if (index == legCount - 1) {
+                    mMap.addMarker(new MarkerOptions().position(leg.getEndLocation().getCoordination()));
+                }
+                List<Step> stepList = leg.getStepList();
+                ArrayList<PolylineOptions> polylineOptionList = DirectionConverter.createTransitPolyline(this, stepList, 5, Color.RED, 3, Color.BLUE);
+                for (PolylineOptions polylineOption : polylineOptionList) {
+                    mMap.addPolyline(polylineOption);
+                }
+            }
             setCameraWithCoordinationBounds(route);
 
         } else {
@@ -153,6 +176,7 @@ public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, D
                     .setNegativeButton(R.string.OK, null)
                     .create()
                     .show();
+            finish();
             return null;
         }
 
@@ -184,6 +208,7 @@ public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, D
 
     private void requestGPS(){
         try {
+            Toast.makeText(this,"Recebendo sua localização...", Toast.LENGTH_SHORT).show();
             locationManager.requestSingleUpdate( LocationManager.GPS_PROVIDER, new GPSListener(), null );
         } catch ( SecurityException e ) {
             e.printStackTrace();
@@ -192,7 +217,18 @@ public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, D
         }
     }
 
+    private void setToolbar(){
+        ivToolbar = findViewById(R.id.imgNavBar);
+        ivToolbar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                Intent intent = new Intent(RouteMaps.this, Dashboard.class);
+                RouteMaps.this.startActivity(intent);
+            }
+        });
 
+    }
 
 
 

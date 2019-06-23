@@ -15,6 +15,7 @@ import com.schelas.schelasvans.R;
 import com.schelas.schelasvans.controller.About;
 import com.schelas.schelasvans.controller.AlocaPass;
 import com.schelas.schelasvans.controller.AlocaVeic;
+import com.schelas.schelasvans.controller.ChecklistDetail;
 import com.schelas.schelasvans.controller.ListDestino;
 import com.schelas.schelasvans.controller.ListPassageiro;
 import com.schelas.schelasvans.controller.ListRelatorio;
@@ -103,6 +104,9 @@ public class Dashboard extends AppCompatActivity
             startActivity(intent);
         } else if (id == R.id.nav_about){
             Intent intent = new Intent(this, About.class);
+            startActivity(intent);
+        } else if (id == R.id.nav_checklist){
+            Intent intent = new Intent(this, ChecklistDetail.class);
             startActivity(intent);
         }
 

@@ -151,6 +151,13 @@
         </activity>
 
 
+        <activity
+            android:name=".controller.ChecklistDetail"
+            android:label="@string/navChecklist"
+            android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/google_maps_key"/>
