@@ -1,5 +1,20 @@
 package com.schelas.schelasvans.model;
 
+import android.content.Context;
+import android.widget.BaseAdapter;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.schelas.schelasvans.controller.ChecklistDetail;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.Serializable;
 
 public class Passageiros implements Serializable {
@@ -91,4 +106,38 @@ public class Passageiros implements Serializable {
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }
+
+    public Passageiros getById(Context context, String id) {
+        final Passageiros[] pass = {new Passageiros()};
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, "https://schelasvansapi.000webhostapp.com/api/get/Passageiro.php?id="+id, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONArray jobj = new JSONArray(response);
+
+                    for (int i = 0; i < jobj.length(); i++) {
+                        JSONObject ob = jobj.getJSONObject(i);
+                        pass[0] = new Passageiros(ob.getString("PassageiroId"), ob.getString("PassageiroNome"), ob.getString("PassageiroEmail"), ob.getString("PassageiroFone"), ob.getString("PassageiroLogradouro"), ob.getString("PassageiroNum"),ob.getString("PassageiroBairro"),ob.getString("PassageiroCidade"));
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(context);
+        requestQueue.add(stringRequest);
+
+        return pass[0];
+
+    }
+
 }

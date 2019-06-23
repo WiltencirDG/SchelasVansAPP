@@ -126,6 +126,10 @@
     <string name="navRotas">Rotas</string>
     <string name="actMapa">Mapa</string>
     <string name="actRotaVeiculo">Carregar rota no mapa</string>
+    <string name="menuChecklist">Checklist</string>
+    <string name="actChecklist">Checklist</string>
+    <string name="saveCheck">Salvar Presença</string>
+    <string name="navChecklist">Checklist</string>
 
 
 </resources>
