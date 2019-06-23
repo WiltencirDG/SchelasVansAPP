@@ -122,9 +122,13 @@ public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, D
             int legCount = route.getLegList().size();
             for (int index = 0; index < legCount; index++) {
                 Leg leg = route.getLegList().get(index);
-                mMap.addMarker(new MarkerOptions().position(leg.getStartLocation().getCoordination()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                if(index == 0) {
+                    mMap.addMarker(new MarkerOptions().position(leg.getStartLocation().getCoordination()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)));
+                }else{
+                    mMap.addMarker(new MarkerOptions().position(leg.getStartLocation().getCoordination()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ORANGE)));
+                }
                 if (index == legCount - 1) {
-                    mMap.addMarker(new MarkerOptions().position(leg.getEndLocation().getCoordination()));
+                    mMap.addMarker(new MarkerOptions().position(leg.getEndLocation().getCoordination()).icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)));
                 }
                 List<Step> stepList = leg.getStepList();
                 ArrayList<PolylineOptions> polylineOptionList = DirectionConverter.createTransitPolyline(this, stepList, 4, Color.RED, 3, Color.BLUE);
@@ -209,7 +213,7 @@ public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, D
 
     private void requestGPS(){
         try {
-            Toast.makeText(this,"Recebendo sua localização...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this,"Recebendo sua localização...", Toast.LENGTH_LONG).show();
             locationManager.requestSingleUpdate( LocationManager.GPS_PROVIDER, new GPSListener(), null );
         } catch ( SecurityException e ) {
             e.printStackTrace();
