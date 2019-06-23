@@ -207,7 +207,7 @@ public class RouteMaps extends FragmentActivity implements OnMapReadyCallback, D
 
         @Override
         public void onProviderEnabled(String provider) {
-
+            Toast.makeText(RouteMaps.this,"Recebendo sua localização...", Toast.LENGTH_LONG).show();
         }
     }
 
