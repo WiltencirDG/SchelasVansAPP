@@ -130,6 +130,7 @@
     <string name="actChecklist">Checklist</string>
     <string name="saveCheck">Salvar Presença</string>
     <string name="navChecklist">Checklist</string>
+    <string name="passPlaceholderEmail">Email</string>
 
 
 </resources>

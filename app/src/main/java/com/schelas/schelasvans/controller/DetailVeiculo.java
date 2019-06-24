@@ -52,9 +52,9 @@ public class DetailVeiculo extends AppCompatActivity {
 
     private void setData(Veiculos veiculo){
         tvName.setText(veiculo.getDesc());
-        tvPlaca.setText(veiculo.getPlaca());
-        tvModelo.setText(veiculo.getModelo());
-        tvCapacidade.setText(veiculo.getCapacidade().toString());
+        tvPlaca.setText("Placa: "+veiculo.getPlaca());
+        tvModelo.setText("Modelo: "+veiculo.getModelo());
+        tvCapacidade.setText("Capacidade: "+veiculo.getCapacidade().toString());
     }
 
 }

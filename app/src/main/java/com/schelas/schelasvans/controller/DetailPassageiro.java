@@ -17,6 +17,7 @@ public class DetailPassageiro extends AppCompatActivity {
     private TextView tvName;
     private TextView tvAddress;
     private TextView tvPhone;
+    private TextView tvEmail;
     private Button btnMap;
     private ImageView ivToolbar;
     private Passageiros passageiro;
@@ -38,6 +39,7 @@ public class DetailPassageiro extends AppCompatActivity {
         tvName = (TextView) findViewById(R.id.tv_n_shop);
         tvAddress = (TextView) findViewById(R.id.tv_a_shop);
         tvPhone = (TextView) findViewById(R.id.tv_p_shop);
+        tvEmail = (TextView) findViewById(R.id.tv_q_shop);
         btnMap = (Button) findViewById(R.id.btn_map);
     }
 
@@ -55,8 +57,9 @@ public class DetailPassageiro extends AppCompatActivity {
 
     private void setData(Passageiros passageiro){
         tvName.setText(passageiro.getName());
-        tvAddress.setText(passageiro.getAddress()+", "+passageiro.getAddressNumber());
-        tvPhone.setText(passageiro.getPhone());
+        tvAddress.setText("Endereço: "+passageiro.getAddress()+", "+passageiro.getAddressNumber());
+        tvPhone.setText("Telefone: "+passageiro.getPhone());
+        tvEmail.setText("Email: "+passageiro.getEmail());
     }
 
     private void setMap(){

@@ -54,8 +54,8 @@ public class DetailDestino extends AppCompatActivity {
 
     private void setData(Destinos destino){
         tvName.setText(destino.getDescricao());
-        tvAddress.setText(destino.getRua()+", "+destino.getNum());
-        tvCidade.setText(destino.getCidade());
+        tvAddress.setText("Endereço: "+destino.getRua()+", "+destino.getNum());
+        tvCidade.setText("Cidade: "+destino.getCidade());
     }
 
     private void setMap(){
